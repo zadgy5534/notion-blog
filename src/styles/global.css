@@ -196,6 +196,7 @@ pre.dark[class*='language-'] {
   text-align: center;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .features {
@@ -261,6 +262,7 @@ a:hover {
 
 .links {
   margin-top: var(--gap);
+  cursor: pointer;
 }
 
 mark {
