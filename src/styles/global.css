@@ -255,6 +255,7 @@ figure {
 a {
   color: #0070f3;
   text-decoration: none;
+  cursor: pointer;
 }
 a:hover {
   color: #3291ff;
