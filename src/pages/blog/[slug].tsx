@@ -11,7 +11,7 @@ import getPageData from '../../lib/notion/getPageData'
 import React, { CSSProperties, useEffect } from 'react'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import getNotionUsers from '../../lib/notion/getNotionUsers'
-import { getBlogLink, getTagLink, getDateStr } from '../../lib/blog-helpers'
+//import { getBlogLink, getTagLink, getDateStr } from '../../lib/blog-helpers'
 import {
   getBlogLink,
   getTagLink,
@@ -169,8 +169,8 @@ const RenderPost = ({ post, tags=[], redirect, preview }) => {
         )}
         {post.Date && (
           <div className="posted">Posted: {getDateStr(post.Date)}</div>)}
-        {post.Tags &&
-            post.Tags.length > 0 &&
+        {post.Tags && (
+            post.Tags.length > 0 && (
             post.Tags.map(tag => (
               <Link
                 href="/blog/tag/[tag]"
@@ -180,7 +180,7 @@ const RenderPost = ({ post, tags=[], redirect, preview }) => {
               >
                 <a className={blogStyles.tag}>🔖{tag}</a>
               </Link>
-            ))}
+        ))))}
 
         <hr />
 

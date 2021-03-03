@@ -94,8 +94,8 @@ export default ({ posts = [], tags = [], preview }) => {
               {post.Date && (
                 <div className="posted">Posted: {getDateStr(post.Date)}</div>
               )}
-              {post.Tags &&
-                post.Tags.length > 0 &&
+              {post.Tags && (
+                post.Tags.length > 0 && (
                 post.Tags.map(tag => (
                   <Link
                     href="/blog/tag/[tag]"
@@ -105,7 +105,7 @@ export default ({ posts = [], tags = [], preview }) => {
                   >
                     <a className={blogStyles.tag}>🔖{tag}</a>
                   </Link>
-                ))}
+              ))))}
 
               <p>
                 {(!post.preview || post.preview.length === 0) &&
