@@ -18,16 +18,14 @@ export default () => (
       <h1>Deltographos Blog</h1>
       <h2>
         powered by Notion Blog
-        {/* <ExtLink
+        { <ExtLink
           href="https://github.com/vercel/next.js/issues/9524"
           className="dotted"
           style={{ color: 'inherit' }}
         >
-        </ExtLink> */}
+        </ExtLink> }
       </h2>
-
-      <Features />
-
+      
       <div className="explanation">
         <p>
         <ExtLink href="">
