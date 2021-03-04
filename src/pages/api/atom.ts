@@ -43,8 +43,8 @@ function createRSS(posts = []) {
 
   return `<?xml version="1.0" encoding="utf-8"?>
   <feed xmlns="http://www.w3.org/2005/Atom">
-    <title>アルパカログ</title>
-    <subtitle>アルパカログの更新情報</subtitle>
+    <title>deltographos</title>
+    <subtitle>deltographosの更新情報</subtitle>
     <link href="https://deltographos.com/atom" rel="self" type="application/rss+xml"/>
     <link href="https://deltographos.com" />
     <updated>${new Date(posts[0].Date).toJSON()}</updated>
