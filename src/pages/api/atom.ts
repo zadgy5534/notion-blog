@@ -22,9 +22,9 @@ function decode(string) {
 function mapToEntry(post) {
   return `
     <entry>
-      <id>https://alpacat.com${post.link}</id>
+      <id>https://deltographos.com${post.link}</id>
       <title>${decode(post.Page)}</title>
-      <link href="https://alpacat.com${post.link}"/>
+      <link href="https://deltographos.com${post.link}"/>
       <updated>${new Date(post.Date).toJSON()}</updated>
       <content type="xhtml">
         <div xmlns="http://www.w3.org/1999/xhtml">
@@ -45,10 +45,10 @@ function createRSS(posts = []) {
   <feed xmlns="http://www.w3.org/2005/Atom">
     <title>アルパカログ</title>
     <subtitle>アルパカログの更新情報</subtitle>
-    <link href="https://alpacat.com/atom" rel="self" type="application/rss+xml"/>
-    <link href="https://alpacat.com" />
+    <link href="https://deltographos.com/atom" rel="self" type="application/rss+xml"/>
+    <link href="https://deltographos.com" />
     <updated>${new Date(posts[0].Date).toJSON()}</updated>
-    <id>alpacat.com/atom</id>${postsString}
+    <id>deltographos.com/atom</id>${postsString}
   </feed>`
 }
 
