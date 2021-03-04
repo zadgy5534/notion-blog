@@ -4,9 +4,11 @@ export default () => (
   <>
     <footer>
       <span>
+        <p>
         <ExtLink href="https://deltographos.com/atom">
           Atom Feed
         </ExtLink>
+        </p>
       </span>
       <span>Also Visit {' '}
         <ExtLink href="https://www.medieviste.org">
@@ -21,10 +23,8 @@ export default () => (
         />
       </ExtLink>
       <span>
-        and{' '}
-        <ExtLink href="https://medieviste.org">
-          subscribe to the mail magazine "Silva Speculationis"
-        </ExtLink>
+        and subscribe to the mail magazine
+        <p>"Silva Speculationis"</p>
       </span>
     </footer>
   </>
