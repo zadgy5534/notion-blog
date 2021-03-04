@@ -4,7 +4,7 @@ export default () => (
   <>
     <footer>
       <span>
-        <ExtLink href="https://deltographos/atom">
+        <ExtLink href="https://deltographos.com/atom">
           Atom Feed
         </ExtLink>
       </span>
