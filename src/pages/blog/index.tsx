@@ -118,7 +118,7 @@ export default ({ posts = [], tags = [], preview }) => {
           )
         })}
       </div>
-      <div style="margin:0 auto;" className={blogStyles.tagIndex}>
+      <div className={blogStyles.tagIndex}>
         <h3>タグ</h3>
         {tags.length === 0 && (
           <div className={blogStyles.noTags}>There are no tags yet</div>
