@@ -171,16 +171,16 @@ const RenderPost = ({ post, tags = [], redirect, preview }) => {
         )}
         {post.Tags &&
           post.Tags.length > 0 &&
-          post.Tags.map(tag => (
-            <Link
-              href="/blog/tag/[tag]"
-              as={getTagLink(tag)}
-              key={tag}
-              passHref
-            >
-              <a className={blogStyles.tag}>🔖{tag}</a>
-            </Link>
-          ))}
+            post.Tags.map(tag => (
+              <Link
+                href="/blog/tag/[tag]"
+                as={getTagLink(tag)}
+                key={tag}
+                passHref
+              >
+                <a className={blogStyles.tag}>🔖{tag}</a>
+              </Link>
+            ))}
 
         <hr />
 
