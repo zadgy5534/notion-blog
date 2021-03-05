@@ -8,7 +8,7 @@ import {
   getBlogLink,
   getTagLink,
   getDateStr,
-  postIsPublished,
+  //  postIsPublished,
 } from '../../lib/blog-helpers'
 import { textBlock } from '../../lib/notion/renderers'
 import getNotionUsers from '../../lib/notion/getNotionUsers'
@@ -96,16 +96,16 @@ export default ({ posts = [], tags = [], preview }) => {
               )}
               {post.Tags &&
                 post.Tags.length > 0 &&
-                  post.Tags.map(tag => (
-                    <Link
-                      href="/blog/tag/[tag]"
-                      as={getTagLink(tag)}
-                      key={`${post.Slug}-${tag}`}
-                      passHref
-                    >
-                      <a className={blogStyles.tag}>🔖{tag}</a>
-                    </Link>
-                  ))}
+                post.Tags.map(tag => (
+                  <Link
+                    href="/blog/tag/[tag]"
+                    as={getTagLink(tag)}
+                    key={`${post.Slug}-${tag}`}
+                    passHref
+                  >
+                    <a className={blogStyles.tag}>🔖{tag}</a>
+                  </Link>
+                ))}
 
               <p>
                 {(!post.preview || post.preview.length === 0) &&
