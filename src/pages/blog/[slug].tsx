@@ -94,7 +94,7 @@ export async function getStaticPaths() {
 
 const listTypes = new Set(['bulleted_list', 'numbered_list'])
 
-const RenderPost = ({ post, tags=[], redirect, preview }) => {
+const RenderPost = ({ post, tags = [], redirect, preview }) => {
   const router = useRouter()
 
   let listTagName: string | null = null
@@ -167,19 +167,20 @@ const RenderPost = ({ post, tags=[], redirect, preview }) => {
           <div className="authors">By: {post.Authors.join(' ')}</div>
         )}
         {post.Date && (
-          <div className="posted">Posted: {getDateStr(post.Date)}</div>)}
-        {post.Tags && 
-            post.Tags.length > 0 && 
-            post.Tags.map(tag => (
-              <Link
-                href="/blog/tag/[tag]"
-                as={getTagLink(tag)}
-                key={tag}
-                passHref
-              >
-                <a className={blogStyles.tag}>🔖{tag}</a>
-              </Link>
-        ))}
+          <div className="posted">Posted: {getDateStr(post.Date)}</div>
+        )}
+        {post.Tags &&
+          post.Tags.length > 0 &&
+          post.Tags.map(tag => (
+            <Link
+              href="/blog/tag/[tag]"
+              as={getTagLink(tag)}
+              key={tag}
+              passHref
+            >
+              <a className={blogStyles.tag}>🔖{tag}</a>
+            </Link>
+          ))}
 
         <hr />
 
