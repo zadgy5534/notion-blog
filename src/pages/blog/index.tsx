@@ -10,6 +10,7 @@ import {
   getDateStr,
   postIsPublished,
 } from '../../lib/blog-helpers'
+
 import { textBlock } from '../../lib/notion/renderers'
 import getNotionUsers from '../../lib/notion/getNotionUsers'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
@@ -33,11 +34,11 @@ export async function getStaticProps({ preview }) {
     })
     .filter(Boolean)
 
-  const tags: string[] = Object.keys(postsTable)
+  /*   const tags: string[] = Object.keys(postsTable)
     .filter(slug => postIsPublished(postsTable[slug]))
     .map(slug => postsTable[slug].Tags)
     .flat()
-    .filter((tag, index, self) => self.indexOf(tag) === index)
+    .filter((tag, index, self) => self.indexOf(tag) === index) */
 
   const { users } = await getNotionUsers([...authorsToGet])
 
@@ -49,13 +50,13 @@ export async function getStaticProps({ preview }) {
     props: {
       preview: preview || false,
       posts,
-      tags,
+      //     tags,
     },
     unstable_revalidate: 10,
   }
 }
 
-export default ({ posts = [], tags = [], preview }) => {
+export default ({ posts = [], preview }) => {
   return (
     <>
       <Header titlePre="Blog" />
@@ -118,7 +119,7 @@ export default ({ posts = [], tags = [], preview }) => {
           )
         })}
       </div>
-      <div className={blogStyles.tagIndex}>
+      {/*       <div className={blogStyles.tagIndex}>
         <h3>タグ</h3>
         {tags.length === 0 && (
           <div className={blogStyles.noTags}>There are no tags yet</div>
@@ -136,7 +137,7 @@ export default ({ posts = [], tags = [], preview }) => {
             })}
           </ul>
         )}
-      </div>
+      </div> */}
     </>
   )
 }

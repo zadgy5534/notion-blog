@@ -11,12 +11,7 @@ import getPageData from '../../lib/notion/getPageData'
 import React, { CSSProperties, useEffect } from 'react'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import getNotionUsers from '../../lib/notion/getNotionUsers'
-import {
-  getBlogLink,
-  getTagLink,
-  getDateStr,
-  postIsPublished,
-} from '../../lib/blog-helpers'
+import { getBlogLink, getTagLink, getDateStr } from '../../lib/blog-helpers'
 
 // Get the data for each blog post
 export async function getStaticProps({ params: { slug }, preview }) {
@@ -60,12 +55,12 @@ export async function getStaticProps({ params: { slug }, preview }) {
       }
     }
   }
-  const tags: string[] = Object.keys(postsTable)
+  /* const tags: string[] = Object.keys(postsTable)
     .filter(slug => postIsPublished(postsTable[slug]))
     .map(slug => postsTable[slug].Tags)
     .flat()
     .filter((tag, index, self) => self.indexOf(tag) === index)
-
+ */
   const { users } = await getNotionUsers(post.Authors || [])
   post.Authors = Object.keys(users).map(id => users[id].full_name)
 
@@ -73,7 +68,7 @@ export async function getStaticProps({ params: { slug }, preview }) {
     props: {
       post,
       preview: preview || false,
-      tags,
+      //  tags,
     },
     unstable_revalidate: 10,
   }
@@ -94,7 +89,7 @@ export async function getStaticPaths() {
 
 const listTypes = new Set(['bulleted_list', 'numbered_list'])
 
-const RenderPost = ({ post, tags = [], redirect, preview }) => {
+const RenderPost = ({ post, redirect, preview }) => {
   const router = useRouter()
 
   let listTagName: string | null = null
@@ -171,16 +166,16 @@ const RenderPost = ({ post, tags = [], redirect, preview }) => {
         )}
         {post.Tags &&
           post.Tags.length > 0 &&
-            post.Tags.map(tag => (
-              <Link
-                href="/blog/tag/[tag]"
-                as={getTagLink(tag)}
-                key={tag}
-                passHref
-              >
-                <a className={blogStyles.tag}>🔖{tag}</a>
-              </Link>
-            ))}
+          post.Tags.map(tag => (
+            <Link
+              href="/blog/tag/[tag]"
+              as={getTagLink(tag)}
+              key={tag}
+              passHref
+            >
+              <a className={blogStyles.tag}>🔖{tag}</a>
+            </Link>
+          ))}
 
         <hr />
 
@@ -442,7 +437,7 @@ const RenderPost = ({ post, tags = [], redirect, preview }) => {
           return toRender
         })}
       </div>
-      <div className={blogStyles.tagIndex}>
+      {/*       <div className={blogStyles.tagIndex}>
         <h3>タグ</h3>
         {tags.length === 0 && (
           <div className={blogStyles.noTags}>There are no tags yet</div>
@@ -460,7 +455,7 @@ const RenderPost = ({ post, tags = [], redirect, preview }) => {
             })}
           </ul>
         )}
-      </div>
+      </div> */}
     </>
   )
 }
