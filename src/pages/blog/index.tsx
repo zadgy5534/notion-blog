@@ -6,7 +6,7 @@ import sharedStyles from '../../styles/shared.module.css'
 
 import {
   getBlogLink,
-  getTagLink,
+  //  getTagLink,
   getDateStr,
   postIsPublished,
 } from '../../lib/blog-helpers'
@@ -95,7 +95,7 @@ export default ({ posts = [], preview }) => {
               {post.Date && (
                 <div className="posted">Posted: {getDateStr(post.Date)}</div>
               )}
-              {post.Tags &&
+              {/*   {post.Tags &&
                 post.Tags.length > 0 &&
                 post.Tags.map(tag => (
                   <Link
@@ -106,7 +106,7 @@ export default ({ posts = [], preview }) => {
                   >
                     <a className={blogStyles.tag}>🔖{tag}</a>
                   </Link>
-                ))}
+                ))} */}
 
               <p>
                 {(!post.preview || post.preview.length === 0) &&
