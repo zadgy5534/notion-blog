@@ -6,7 +6,7 @@ import sharedStyles from '../../styles/shared.module.css'
 
 import {
   getBlogLink,
-  //  getTagLink,
+  getTagLink,
   getDateStr,
   postIsPublished,
 } from '../../lib/blog-helpers'
@@ -34,11 +34,11 @@ export async function getStaticProps({ preview }) {
     })
     .filter(Boolean)
 
-  /*   const tags: string[] = Object.keys(postsTable)
+  const tags: string[] = Object.keys(postsTable)
     .filter(slug => postIsPublished(postsTable[slug]))
     .map(slug => postsTable[slug].Tags)
     .flat()
-    .filter((tag, index, self) => self.indexOf(tag) === index) */
+    .filter((tag, index, self) => self.indexOf(tag) === index)
 
   const { users } = await getNotionUsers([...authorsToGet])
 
@@ -50,13 +50,13 @@ export async function getStaticProps({ preview }) {
     props: {
       preview: preview || false,
       posts,
-      //     tags,
+      tags,
     },
     unstable_revalidate: 10,
   }
 }
 
-export default ({ posts = [], preview }) => {
+export default ({ posts = [], tags = [], preview }) => {
   return (
     <>
       <Header titlePre="Blog" />
@@ -95,7 +95,7 @@ export default ({ posts = [], preview }) => {
               {post.Date && (
                 <div className="posted">Posted: {getDateStr(post.Date)}</div>
               )}
-              {/*   {post.Tags &&
+              {post.Tags &&
                 post.Tags.length > 0 &&
                 post.Tags.map(tag => (
                   <Link
@@ -106,7 +106,7 @@ export default ({ posts = [], preview }) => {
                   >
                     <a className={blogStyles.tag}>🔖{tag}</a>
                   </Link>
-                ))} */}
+                ))}
 
               <p>
                 {(!post.preview || post.preview.length === 0) &&
@@ -119,7 +119,7 @@ export default ({ posts = [], preview }) => {
           )
         })}
       </div>
-      {/*       <div className={blogStyles.tagIndex}>
+      <div className={blogStyles.tagIndex}>
         <h3>タグ</h3>
         {tags.length === 0 && (
           <div className={blogStyles.noTags}>There are no tags yet</div>
@@ -137,7 +137,7 @@ export default ({ posts = [], preview }) => {
             })}
           </ul>
         )}
-      </div> */}
+      </div>
     </>
   )
 }
