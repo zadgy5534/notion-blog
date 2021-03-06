@@ -2,9 +2,9 @@ export const getBlogLink = (slug: string) => {
   return `/blog/${slug}`
 }
 
-export const getTagLink = (tag: string) => {
+/* export const getTagLink = (tag: string) => {
   return `/blog/tag/${encodeURIComponent(tag)}`
-}
+} */
 
 export const getDateStr = date => {
   return new Date(date).toLocaleString('en-US', {
