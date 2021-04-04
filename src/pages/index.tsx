@@ -14,38 +14,39 @@ export default () => (
         width="250"
         alt="Vercel + Notion"
       />
-      <h1>Deltographos Blog</h1>
+      <h1>Deltographos :: Blog</h1>
       <h2>
         powered by Notion Blog
-        { <ExtLink
-          href="https://github.com/vercel/next.js/issues/9524"
-          className="dotted"
-          style={{ color: 'inherit' }}
-        >
-        </ExtLink> }
+        {
+          <ExtLink
+            href="https://github.com/vercel/next.js/issues/9524"
+            className="dotted"
+            style={{ color: 'inherit' }}
+          ></ExtLink>
+        }
       </h2>
-      
+
       <div className="explanation">
         <p>
-        <ExtLink href="">
-        <img
-          src="https://www.medieviste.org/wp/wp-content/uploads/sakura_01.gif"
-          height={128}
-          width={132}
-          alt="Humanity Fan"
-        />
-        </ExtLink>
+          <ExtLink href="">
+            <img
+              src="https://www.medieviste.org/wp/wp-content/uploads/sakura_01.gif"
+              height={128}
+              width={132}
+              alt="Humanity Fan"
+            />
+          </ExtLink>
         </p>
 
         <p>
-        <ExtLink href="">
-        <img
-          src="https://www.medieviste.org/wp/wp-content/uploads/Wave1.gif"
-          height={128}
-          width={132}
-          alt="Weekend Coder and Occasional Lutenist"
-        />
-        </ExtLink>
+          <ExtLink href="">
+            <img
+              src="https://www.medieviste.org/wp/wp-content/uploads/Wave1.gif"
+              height={128}
+              width={132}
+              alt="Weekend Coder and Occasional Lutenist"
+            />
+          </ExtLink>
         </p>
       </div>
     </div>
