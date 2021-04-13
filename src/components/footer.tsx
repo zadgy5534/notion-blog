@@ -21,7 +21,7 @@ export default () => (
         />
       </ExtLink>
       <span>
-        そちらではメルマガをやっています：
+        メルマガ休止中。
         <p>"Silva Speculationis"</p>
       </span>
     </footer>
