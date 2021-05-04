@@ -9,8 +9,8 @@ export default () => (
         </p>
       </span>
       <span>
-        姉妹サイト：{'Silva Speculationis'}
-        <ExtLink href="https://www.medieviste.org">medieviste.org</ExtLink>
+        姉妹サイト：{'Silva Speculationis '}
+        <ExtLink href="https://www.medieviste.org">(medieviste.org)</ExtLink>
       </span>
       <ExtLink href="https://www.medieviste.org">
         <img
