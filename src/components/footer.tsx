@@ -21,7 +21,7 @@ export default () => (
         />
       </ExtLink>
       <span>
-        <p>"Silva Speculationis"</p>
+        <p>--"Silva Speculationis"</p>
       </span>
     </footer>
   </>
