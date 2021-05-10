@@ -28,6 +28,15 @@ export default () => (
 
       <div className="explanation">
         <p>
+          <ExtLink
+            href="https://www.notion.so/Blog-bd6e66ce557c49a9ba33d6cf1ed143ad"
+            style={{ color: 'inherit' }}
+          >
+            過去記事一覧はこちら
+          </ExtLink>
+        </p>
+
+        <p>
           <ExtLink href="">
             <img
               src="https://www.medieviste.org/wp/wp-content/uploads/sakura_01.gif"
