@@ -28,7 +28,7 @@ export default () => (
       <span>
         <p>
           姉妹サイト："Silva Speculationis"
-          <ExtLink href="https://www.medieviste.org">(medieviste.org) </ExtLink>
+          <ExtLink href="https://www.medieviste.org">(medieviste.org)</ExtLink>
         </p>
       </span>
     </footer>
