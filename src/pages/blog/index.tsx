@@ -37,7 +37,7 @@ export async function getStaticProps({ preview }) {
   const tags: string[] = Object.keys(postsTable)
     .filter(slug => postIsPublished(postsTable[slug]))
     .map(slug => postsTable[slug].Tags)
-    .flat()
+    //.flat()
     .filter((tag, index, self) => self.indexOf(tag) === index)
 
   const { users } = await getNotionUsers([...authorsToGet])
