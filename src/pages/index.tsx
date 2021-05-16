@@ -27,14 +27,7 @@ export default () => (
       </h2>
 
       <div className="explanation">
-        <p>
-          <ExtLink
-            href="https://www.notion.so/Blog-bd6e66ce557c49a9ba33d6cf1ed143ad"
-            style={{ color: 'inherit' }}
-          >
-            過去記事一覧はこちら
-          </ExtLink>
-        </p>
+        <p></p>
 
         <p>
           <ExtLink href="">

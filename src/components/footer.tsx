@@ -9,8 +9,13 @@ export default () => (
         </p>
       </span>
       <span>
-        姉妹サイト：{'Silva Speculationis '}
-        <ExtLink href="https://www.medieviste.org">(medieviste.org)</ExtLink>
+        このブログの過去記事一覧 →　
+        <ExtLink
+          href="https://www.notion.so/Blog-bd6e66ce557c49a9ba33d6cf1ed143ad"
+          style={{ color: 'inherit' }}
+        >
+          Notionページ
+        </ExtLink>
       </span>
       <ExtLink href="https://www.medieviste.org">
         <img
@@ -21,7 +26,10 @@ export default () => (
         />
       </ExtLink>
       <span>
-        <p>"Silva Speculationis"</p>
+        <p>
+          姉妹サイト："Silva Speculationis"
+          <ExtLink href="https://www.medieviste.org">(medieviste.org)</ExtLink>
+        </p>
       </span>
     </footer>
   </>
