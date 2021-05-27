@@ -44,7 +44,7 @@ if (!BLOG_INDEX_ID) {
 module.exports = {
   target: 'experimental-serverless-trace',
 
-  webpack(cfg, { dev, isServer }) {
+  /* webpack(cfg, { dev, isServer }) {
     // only compile build-rss in production server build
     if (dev || !isServer) return cfg
 
@@ -57,13 +57,13 @@ module.exports = {
       entries['./scripts/build-rss.js'] = './src/lib/build-rss.ts'
       return entries
     }
-    return cfg
+    return cfg */
 
-    /*    experimental: {
-      modern: true,
-      async rewrites() {
-        return [{ source: '/atom', destination: '/api/atom' }]
-      },
-    catchAllRouting: true, */
+  experimental: {
+    modern: true,
+    async rewrites() {
+      return [{ source: '/atom', destination: '/api/atom' }]
+    },
+    catchAllRouting: true,
   },
 }
