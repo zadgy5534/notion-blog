@@ -35,7 +35,7 @@ export default () => (
               src="https://www.medieviste.org/wp/wp-content/uploads/sakura_01.gif"
               height={128}
               width={132}
-              alt="Humanity Fan"
+              alt="Humanity and Engineering Fan"
             />
           </ExtLink>
         </p>
