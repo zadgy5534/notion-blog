@@ -11,10 +11,10 @@ export default () => (
       <span>
         このブログの過去記事一覧 →　
         <ExtLink
-          href="https://www.notion.so/Blog-bd6e66ce557c49a9ba33d6cf1ed143ad"
+          href="https://www.notion.so/deltographos/Blog-bd6e66ce557c49a9ba33d6cf1ed143ad"
           style={{ color: 'inherit' }}
         >
-          Notionページ
+          Notionの公開ページ
         </ExtLink>
       </span>
       <ExtLink href="https://www.medieviste.org">
