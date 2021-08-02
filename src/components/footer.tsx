@@ -14,7 +14,7 @@ export default () => (
           href="https://deltographos.notion.site/Blog-bd6e66ce557c49a9ba33d6cf1ed143ad"
           style={{ color: 'inherit' }}
         >
-          Notionの公開ページ
+          （Notionの公開ページ）
         </ExtLink>
       </span>
       <ExtLink href="https://www.medieviste.org">
