@@ -332,7 +332,7 @@ async function getExistingexistingBlockId() {
       'content-type': 'application/json',
     },
     body: JSON.stringify({
-      pageId,
+      page: { id: pageId },
       limit: 25,
       cursor: { stack: [] },
       chunkNumber: 0,
