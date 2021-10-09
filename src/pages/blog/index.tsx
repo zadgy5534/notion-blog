@@ -4,51 +4,17 @@ import Header from '../../components/header'
 import blogStyles from '../../styles/blog.module.css'
 import sharedStyles from '../../styles/shared.module.css'
 
-import {
-  getBlogLink,
-  getTagLink,
-  getDateStr,
-  postIsPublished,
-} from '../../lib/blog-helpers'
+import { getBlogLink, getTagLink } from '../../lib/blog-helpers'
 
 import { textBlock } from '../../lib/notion/renderers'
-import getNotionUsers from '../../lib/notion/getNotionUsers'
-import getBlogIndex from '../../lib/notion/getBlogIndex'
+import { getPosts, getAllTags } from '../../lib/notion/client'
 
-export async function getStaticProps({ preview }) {
-  const postsTable = await getBlogIndex()
-
-  const authorsToGet: Set<string> = new Set()
-  const posts: any[] = Object.keys(postsTable)
-    .map(slug => {
-      const post = postsTable[slug]
-      // remove draft posts in production
-      if (!preview && !postIsPublished(post)) {
-        return null
-      }
-      post.Authors = post.Authors || []
-      for (const author of post.Authors) {
-        authorsToGet.add(author)
-      }
-      return post
-    })
-    .filter(Boolean)
-
-  const tags: string[] = Object.keys(postsTable)
-    .filter(slug => postIsPublished(postsTable[slug]))
-    .map(slug => postsTable[slug].Tags)
-    .flat()
-    .filter((tag, index, self) => self.indexOf(tag) === index)
-
-  const { users } = await getNotionUsers([...authorsToGet])
-
-  posts.map(post => {
-    post.Authors = post.Authors.map(id => users[id].full_name)
-  })
+export async function getStaticProps() {
+  const posts = await getPosts()
+  const tags = await getAllTags()
 
   return {
     props: {
-      preview: preview || false,
       posts,
       tags,
     },
@@ -56,21 +22,11 @@ export async function getStaticProps({ preview }) {
   }
 }
 
-export default ({ posts = [], tags = [], preview }) => {
+export default ({ posts = [], tags = [] }) => {
   return (
     <>
       <Header titlePre="Blog" />
-      {preview && (
-        <div className={blogStyles.previewAlertContainer}>
-          <div className={blogStyles.previewAlert}>
-            <b>Note:</b>
-            {` `}Viewing in preview mode{' '}
-            <Link href={`/api/clear-preview`}>
-              <button className={blogStyles.escapePreview}>Exit Preview</button>
-            </Link>
-          </div>
-        </div>
-      )}
+
       <div className={`${sharedStyles.layout} ${blogStyles.blogIndex}`}>
         <h1>Deltographos :: Blog</h1>
         {posts.length === 0 && (
@@ -79,41 +35,36 @@ export default ({ posts = [], tags = [], preview }) => {
         {posts.map(post => {
           return (
             <div className={blogStyles.postPreview} key={post.Slug}>
-              <h3>
-                <Link href="/blog/[slug]" as={getBlogLink(post.Slug)}>
-                  <div className={blogStyles.titleContainer}>
-                    {!post.Published && (
-                      <span className={blogStyles.draftBadge}>Draft</span>
-                    )}
-                    <a>{post.Page}</a>
-                  </div>
-                </Link>
-              </h3>
-              {post.Authors.length > 0 && (
-                <div className="authors">By: {post.Authors.join(' ')}</div>
-              )}
               {post.Date && (
-                <div className="posted">Posted: {getDateStr(post.Date)}</div>
+                <div className="posted">📅&nbsp;&nbsp;{post.Date}</div>
               )}
-              {post.Tags &&
-                post.Tags.length > 0 &&
-                post.Tags.map(tag => (
+              <h3>
+                <div className={blogStyles.titleContainer}>
                   <Link
-                    href="/blog/tag/[tag]"
-                    as={getTagLink(tag)}
-                    key={`${post.Slug}-${tag}`}
+                    href="/blog/[slug]"
+                    as={getBlogLink(post.Slug)}
                     passHref
                   >
-                    <a className={blogStyles.tag}>🔖{tag}</a>
+                    <a>{post.title}</a>
                   </Link>
-                ))}
+                </div>
+              </h3>
 
-              <p>
-                {(!post.preview || post.preview.length === 0) && '---'}
-                {(post.preview || []).map((block, idx) =>
-                  textBlock(block, true, `${post.Slug}${idx}`)
-                )}
-              </p>
+              <div className={blogStyles.tagContainer}>
+                {post.Tags &&
+                  post.Tags.length > 0 &&
+                  post.Tags.map(tag => (
+                    <Link
+                      href="/blog/tag/[tag]"
+                      as={getTagLink(tag)}
+                      key={`${post.Slug}-${tag}`}
+                      passHref
+                    >
+                      <a className={blogStyles.tag}>🔖{tag}</a>
+                    </Link>
+                  ))}
+              </div>
+              <p>{post.Excerpt}</p>
             </div>
           )
         })}

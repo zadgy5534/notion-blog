@@ -1,14 +1,8 @@
 import { IncomingMessage, ServerResponse } from 'http'
 import { renderToStaticMarkup } from 'react-dom/server'
 
-import { textBlock } from '../../lib/notion/renderers'
-import getBlogIndex from '../../lib/notion/getBlogIndex'
-import getNotionUsers from '../../lib/notion/getNotionUsers'
-import { postIsPublished, getBlogLink } from '../../lib/blog-helpers'
-
-function mapToAuthor(author) {
-  return `<author><name>${author.full_name}</name></author>`
-}
+import { getBlogLink } from '../../lib/blog-helpers'
+import { getAllPosts } from '../../lib/notion/client'
 
 function decode(string) {
   return string
@@ -22,9 +16,10 @@ function decode(string) {
 function mapToEntry(post) {
   return `
     <entry>
-      <id>https://deltographos.com${post.link}</id>
-      <title>${decode(post.Page)}</title>
-      <link href="https://deltographos.com${post.link}"/>
+      <id>https://alpacat.com${getBlogLink(post.Slug)}</id>
+      <title>${decode(post.Title)}</title>
+      <link href="https://alpacat.com${getBlogLink(post.Slug)}"/>
+      
       <updated>${new Date(post.Date).toJSON()}</updated>
       <content type="xhtml">
         <div xmlns="http://www.w3.org/1999/xhtml">
@@ -55,31 +50,7 @@ function createRSS(posts = []) {
 export default async function(req: IncomingMessage, res: ServerResponse) {
   res.setHeader('Content-Type', 'text/xml')
   try {
-    const postsTable = await getBlogIndex()
-    const neededAuthors = new Set<string>()
-
-    const posts = Object.keys(postsTable)
-      .map(slug => {
-        const post = postsTable[slug]
-        if (!postIsPublished(post)) return
-
-        post.authors = post.Authors || []
-
-        for (const author of post.authors) {
-          neededAuthors.add(author)
-        }
-        return post
-      })
-      .filter(Boolean)
-      .sort((a, b) => (b.Date || 0) - (a.Date || 0))
-
-    const { users } = await getNotionUsers([...neededAuthors])
-
-    posts.forEach(post => {
-      post.authors = post.authors.map(id => users[id])
-      post.link = getBlogLink(post.Slug)
-    })
-
+    const posts = await getAllPosts()
     res.write(createRSS(posts))
     res.end()
   } catch (e) {
