@@ -11,7 +11,7 @@ interface Post {
   //Slug: string
   Date: string
   Tags: string[]
-  Excerpt: string
+  //Excerpt: string
   OGImage: string
 }
 
@@ -102,7 +102,7 @@ export async function getPosts(pageSize: number = 10, cursor?: string) {
       //Slug: prop.Slug.rich_text[0].plain_text,
       Date: prop.Date.date.start,
       Tags: prop.Tags.multi_select.map(opt => opt.name),
-      Excerpt: prop.Excerpt.rich_text[0].plain_text,
+      //Excerpt: prop.Excerpt.rich_text[0].plain_text,
       OGImage:
         prop.OGImage.files.length > 0 ? prop.OGImage.files[0].name : null,
     }
@@ -154,7 +154,7 @@ export async function getAllPosts() {
         //Slug: prop.Slug.rich_text[0].plain_text,
         Date: prop.Date.date.start,
         Tags: prop.Tags.multi_select.map(opt => opt.name),
-        Excerpt: prop.Excerpt.rich_text[0].plain_text,
+        //Excerpt: prop.Excerpt.rich_text[0].plain_text,
         OGImage:
           prop.OGImage.files.length > 0 ? prop.OGImage.files[0].name : null,
       }
@@ -217,7 +217,7 @@ export async function getPostBySlug(slug: string) {
     //Slug: prop.Slug.rich_text[0].plain_text,
     Date: prop.Date.date.start,
     Tags: prop.Tags.multi_select.map(opt => opt.name),
-    Excerpt: prop.Excerpt.rich_text[0].plain_text,
+    //Excerpt: prop.Excerpt.rich_text[0].plain_text,
     OGImage: prop.OGImage.files.length > 0 ? prop.OGImage.files[0].name : null,
   }
 
@@ -273,7 +273,7 @@ export async function getPostsByTag(tag: string, cursor?: string) {
       //Slug: prop.Slug.rich_text[0].plain_text,
       Date: prop.Date.date.start,
       Tags: prop.Tags.multi_select.map(opt => opt.name),
-      Excerpt: prop.Excerpt.rich_text[0].plain_text,
+      //Excerpt: prop.Excerpt.rich_text[0].plain_text,
       OGImage:
         prop.OGImage.files.length > 0 ? prop.OGImage.files[0].name : null,
     }
