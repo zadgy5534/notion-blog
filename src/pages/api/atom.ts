@@ -16,9 +16,9 @@ function decode(string) {
 function mapToEntry(post) {
   return `
     <entry>
-      <id>https://alpacat.com${getBlogLink(post.Slug)}</id>
+      <id>https://deltographos.com${getBlogLink(post.Slug)}</id>
       <title>${decode(post.Title)}</title>
-      <link href="https://alpacat.com${getBlogLink(post.Slug)}"/>
+      <link href="https://deltographos.com${getBlogLink(post.Slug)}"/>
       
       <updated>${new Date(post.Date).toJSON()}</updated>
       <content type="xhtml">
