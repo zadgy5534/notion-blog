@@ -12,7 +12,7 @@ interface Post {
   Date: string
   Tags: string[]
   //Excerpt: string
-  OGImage: string
+  //OGImage: string
 }
 
 interface Block {
@@ -103,8 +103,8 @@ export async function getPosts(pageSize: number = 10, cursor?: string) {
       Date: prop.Date.date.start,
       Tags: prop.Tags.multi_select.map(opt => opt.name),
       //Excerpt: prop.Excerpt.rich_text[0].plain_text,
-      OGImage:
-        prop.OGImage.files.length > 0 ? prop.OGImage.files[0].name : null,
+      //OGImage:
+      //prop.OGImage.files.length > 0 ? prop.OGImage.files[0].name : null,
     }
 
     return post
@@ -155,8 +155,8 @@ export async function getAllPosts() {
         Date: prop.Date.date.start,
         Tags: prop.Tags.multi_select.map(opt => opt.name),
         //Excerpt: prop.Excerpt.rich_text[0].plain_text,
-        OGImage:
-          prop.OGImage.files.length > 0 ? prop.OGImage.files[0].name : null,
+        //OGImage:
+        //prop.OGImage.files.length > 0 ? prop.OGImage.files[0].name : null,
       }
 
       return post
@@ -218,7 +218,7 @@ export async function getPostBySlug(slug: string) {
     Date: prop.Date.date.start,
     Tags: prop.Tags.multi_select.map(opt => opt.name),
     //Excerpt: prop.Excerpt.rich_text[0].plain_text,
-    OGImage: prop.OGImage.files.length > 0 ? prop.OGImage.files[0].name : null,
+    //OGImage: prop.OGImage.files.length > 0 ? prop.OGImage.files[0].name : null,
   }
 
   return post
@@ -274,8 +274,8 @@ export async function getPostsByTag(tag: string, cursor?: string) {
       Date: prop.Date.date.start,
       Tags: prop.Tags.multi_select.map(opt => opt.name),
       //Excerpt: prop.Excerpt.rich_text[0].plain_text,
-      OGImage:
-        prop.OGImage.files.length > 0 ? prop.OGImage.files[0].name : null,
+      //OGImage:
+      //prop.OGImage.files.length > 0 ? prop.OGImage.files[0].name : null,
     }
 
     return post
