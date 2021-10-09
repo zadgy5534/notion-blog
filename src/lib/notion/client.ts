@@ -99,10 +99,10 @@ export async function getPosts(pageSize: number = 10, cursor?: string) {
     const post: Post = {
       PageId: item.id,
       Title: prop.Page.title[0].plain_text,
-      Slug: prop.Slug.rich_text[0].plain_text,
+      Slug: prop.Slug.richText[0].plain_text,
       Date: prop.Date.date.start,
       Tags: prop.Tags.multi_select.map(opt => opt.name),
-      Excerpt: prop.Excerpt.rich_text[0].plain_text,
+      Excerpt: prop.Excerpt.richTtext[0].plain_text,
       OGImage:
         prop.OGImage.files.length > 0 ? prop.OGImage.files[0].name : null,
     }
