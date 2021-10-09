@@ -9,12 +9,12 @@ export default () => (
         </p>
       </span>
       <span>
-        このブログの過去記事一覧＝＞　
+        ブログ記事はこちらをどうぞ＝＞　
         <ExtLink
-          href="https://deltographos.notion.site/Blog-bd6e66ce557c49a9ba33d6cf1ed143ad"
+          href="https://deltographos.notion.site/"
           style={{ color: 'inherit' }}
         >
-          （Notionの公開ページ）
+          （deltographos.notion.site）
         </ExtLink>
       </span>
       <ExtLink href="https://www.medieviste.org">
