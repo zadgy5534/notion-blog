@@ -12,8 +12,14 @@ const navItems: { label: string; page?: string; link?: string }[] = [
 ]
 
 const ogImageUrl = 'https://notion-blog.now.sh/og-image.png'
+const defaultUrl = 'https://deltgraphos.com'
 
-export default ({ titlePre = '' }) => {
+const Header = ({
+  path = '',
+  titlePre = '',
+  description = '',
+  ogImageUrl = '',
+}) => {
   const { pathname } = useRouter()
 
   return (
@@ -24,6 +30,7 @@ export default ({ titlePre = '' }) => {
           name="description"
           content="An example Next.js site using Notion for the blog"
         />
+        <meta property="og:url" content={`${defaultUrl}${path}`} />
         <meta name="og:title" content="My Notion Blog" />
         <meta property="og:image" content={ogImageUrl} />
         <meta name="twitter:site" content="@_ijjk" />
@@ -48,3 +55,5 @@ export default ({ titlePre = '' }) => {
     </header>
   )
 }
+
+export default Header
