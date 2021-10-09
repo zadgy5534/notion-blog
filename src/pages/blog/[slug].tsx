@@ -88,8 +88,8 @@ export async function getStaticPaths() {
   // for actually published ones
 
   return {
-    // paths: posts.map(post => getBlogLink(post.Slug)),
-    // fallback: true,
+    paths: posts.map(post => getBlogLink(post.Slug)),
+    fallback: true,
   }
 }
 
