@@ -86,9 +86,10 @@ export async function getStaticPaths() {
   const posts = await getAllPosts()
   // we fallback for any unpublished posts to save build time
   // for actually published ones
+
   return {
-    paths: posts.map(post => getBlogLink(post.Slug)),
-    fallback: true,
+    // paths: posts.map(post => getBlogLink(post.Slug)),
+    // fallback: true,
   }
 }
 
