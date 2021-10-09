@@ -9,7 +9,7 @@ export default () => (
         </p>
       </span>
       <span>
-        ブログ記事はこちらをどうぞ＝＞　
+        ブログ記事はこちらにまとめています。＝＞　
         <ExtLink
           href="https://deltographos.notion.site/"
           style={{ color: 'inherit' }}
