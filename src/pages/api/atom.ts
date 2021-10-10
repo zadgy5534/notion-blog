@@ -14,6 +14,7 @@ function decode(string) {
 }
 
 function mapToEntry(post) {
+  const date = new Date(post.Date)
   return `
     <entry>
       <id>https://deltographos.com${getBlogLink(post.Slug)}</id>

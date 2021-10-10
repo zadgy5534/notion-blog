@@ -18,20 +18,20 @@ export async function getStaticProps() {
       posts,
       tags,
     },
-    unstable_revalidate: 10,
+    unstable_revalidate: 60,
   }
 }
 
 export default ({ posts = [], tags = [] }) => {
   return (
     <>
-      <Header titlePre="Blog" />
+      <Header path="/blog" titlePre="" />
 
       <div className={`${sharedStyles.layout} ${blogStyles.blogIndex}`}>
-        <h1>Deltographos :: Blog</h1>
         {posts.length === 0 && (
           <p className={blogStyles.noPosts}>There are no posts yet</p>
         )}
+
         {posts.map(post => {
           return (
             <div className={blogStyles.postPreview} key={post.Slug}>
