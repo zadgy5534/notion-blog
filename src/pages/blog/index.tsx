@@ -60,7 +60,7 @@ export default ({ posts = [], tags = [] }) => {
                       key={`${post.Slug}-${tag}`}
                       passHref
                     >
-                      <a className={blogStyles.tag}>🔖{tag}</a>
+                      <a className={blogStyles.tag}>🔖&nbsp;&nbsp;{tag}</a>
                     </Link>
                   ))}
               </div>

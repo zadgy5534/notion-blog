@@ -73,6 +73,7 @@ export default ({ tag, posts = [], tags = [], redirect }) => {
 
   return (
     <>
+      <Header titlePre={`${tag}を含む記事`} />
       <div className={`${sharedStyles.layout} ${blogStyles.blogIndex}`}>
         <h2>{tag}</h2>
         {posts.length === 0 && (
@@ -96,19 +97,20 @@ export default ({ tag, posts = [], tags = [], redirect }) => {
                   </Link>
                 </div>
               </h3>
-
-              {post.Tags &&
-                post.Tags.length > 0 &&
-                post.Tags.map(tag => (
-                  <Link
-                    href="/blog/tag/[tag]"
-                    as={getTagLink(tag)}
-                    key={`${post.Slug}-${tag}`}
-                    passHref
-                  >
-                    <a className={blogStyles.tag}>🔖{tag}</a>
-                  </Link>
-                ))}
+              <div className={blogStyles.tagContainer}>
+                {post.Tags &&
+                  post.Tags.length > 0 &&
+                  post.Tags.map(tag => (
+                    <Link
+                      href="/blog/tag/[tag]"
+                      as={getTagLink(tag)}
+                      key={`${post.Slug}-${tag}`}
+                      passHref
+                    >
+                      <a className={blogStyles.tag}>🔖{tag}</a>
+                    </Link>
+                  ))}
+              </div>
               <p>{post.Excerpt}</p>
             </div>
           )
