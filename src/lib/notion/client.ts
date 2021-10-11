@@ -306,30 +306,44 @@ export async function getAllBlocksByPageId(pageId) {
             Id: item.id,
             Type: item.type,
             HasChildren: item.has_children,
-            RichTexts: item[item.type].text.map(item => {
-              const text: Text = {
-                Content: item.text.content,
-                Link: item.text.link,
-              }
+            RichTexts: item[item.type].text.map(
+              (item: {
+                text: { content: any; link: any }
+                annotations: {
+                  bold: any
+                  italic: any
+                  strikethrough: any
+                  underline: any
+                  code: any
+                  color: any
+                }
+                plain_text: any
+                href: any
+              }) => {
+                const text: Text = {
+                  Content: item.text.content,
+                  Link: item.text.link,
+                }
 
-              const annotation: Annotation = {
-                Bold: item.annotations.bold,
-                Italic: item.annotations.italic,
-                Strikethrough: item.annotations.strikethrough,
-                Underline: item.annotations.underline,
-                Code: item.annotations.code,
-                Color: item.annotations.color,
-              }
+                const annotation: Annotation = {
+                  Bold: item.annotations.bold,
+                  Italic: item.annotations.italic,
+                  Strikethrough: item.annotations.strikethrough,
+                  Underline: item.annotations.underline,
+                  Code: item.annotations.code,
+                  Color: item.annotations.color,
+                }
 
-              const richText: RichText = {
-                Text: text,
-                Annotation: annotation,
-                PlainText: item.plain_text,
-                Href: item.href,
-              }
+                const richText: RichText = {
+                  Text: text,
+                  Annotation: annotation,
+                  PlainText: item.plain_text,
+                  Href: item.href,
+                }
 
-              return richText
-            }),
+                return richText
+              }
+            ),
           }
           break
         case 'unsupported':
