@@ -99,7 +99,7 @@ export async function getPosts(pageSize: number = 10, cursor?: string) {
     const post: Post = {
       PageId: item.id,
       Title: prop.Page.title[0].plain_text,
-      Slug: prop.Slug.rich_text[0].PlainText,
+      Slug: prop.Slug.rich_text[0].text,
       Date: prop.Date.date.start,
       Tags: prop.Tags.multi_select.map(opt => opt.name),
       //Excerpt: prop.Excerpt.rich_text[0].plain_text,
@@ -151,7 +151,7 @@ export async function getAllPosts() {
       const post: Post = {
         PageId: item.id,
         Title: prop.Page.title[0].plain_text,
-        Slug: prop.Slug.rich_text[0].PlainText,
+        Slug: prop.Slug.rich_text[0].text,
         Date: prop.Date.date.start,
         Tags: prop.Tags.multi_select.map(opt => opt.name),
         //Excerpt: prop.Excerpt.rich_text[0].plain_text,
@@ -214,7 +214,7 @@ export async function getPostBySlug(slug: string) {
   const post: Post = {
     PageId: result.id,
     Title: prop.Page.title[0].plain_text,
-    Slug: prop.Slug.rich_text[0].PlainText,
+    Slug: prop.Slug.rich_text[0].text,
     Date: prop.Date.date.start,
     Tags: prop.Tags.multi_select.map(opt => opt.name),
     //Excerpt: prop.Excerpt.rich_text[0].plain_text,
@@ -270,7 +270,7 @@ export async function getPostsByTag(tag: string, cursor?: string) {
     const post: Post = {
       PageId: item.id,
       Title: prop.Page.title[0].plain_text,
-      Slug: prop.Slug.rich_text[0].PlainText,
+      Slug: prop.Slug.rich_text[0].text,
       Date: prop.Date.date.start,
       Tags: prop.Tags.multi_select.map(opt => opt.name),
       //Excerpt: prop.Excerpt.rich_text[0].plain_text,
