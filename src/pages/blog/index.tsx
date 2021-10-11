@@ -25,7 +25,7 @@ export async function getStaticProps() {
 export default ({ posts = [], tags = [] }) => {
   return (
     <>
-      <Header path="/blog" titlePre="" />
+      <Header path="" titlePre="" />
 
       <div className={`${sharedStyles.layout} ${blogStyles.blogIndex}`}>
         {posts.length === 0 && (
