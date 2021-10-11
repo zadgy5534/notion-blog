@@ -33,7 +33,7 @@ export async function getStaticProps({ params: { slug } }) {
       props: {
         redirect: '/blog',
       },
-      unstable_revalidate: 30,
+      revalidate: 30,
     }
   }
 
@@ -51,7 +51,7 @@ export async function getStaticProps({ params: { slug } }) {
       recentPosts,
       tags,
     },
-    unstable_revalidate: 60,
+    revalidate: 60,
   }
 }
 
