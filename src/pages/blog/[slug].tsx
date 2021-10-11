@@ -48,7 +48,7 @@ export async function getStaticProps({ params: { slug } }) {
     props: {
       post,
 
-      recentPosts,
+      //recentPosts,
       tags,
     },
     revalidate: 60,
@@ -72,7 +72,7 @@ const listTypes = new Set(['bulleted_list', 'numbered_list'])
 const RenderPost = ({
   post,
   //blocks = [],
-  recentPosts = [],
+  //recentPosts = [],
   tags = [],
   redirect,
 }) => {
