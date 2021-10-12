@@ -45,7 +45,7 @@ export default ({ posts = [], tags = [] }) => {
                     as={getBlogLink(post.Slug)}
                     passHref
                   >
-                    <a>{post.title}</a>
+                    <a>{post.Title}</a>
                   </Link>
                 </div>
               </h3>
