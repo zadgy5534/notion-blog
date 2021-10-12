@@ -6,7 +6,7 @@ import Heading from '../../components/heading'
 import components from '../../components/dynamic'
 import ReactJSXParser from '@zeit/react-jsx-parser'
 import blogStyles from '../../styles/blog.module.css'
-import getPageData from '../../lib/notion/getPageData'
+//import getPageData from '../../lib/notion/getPageData'
 
 import React, { CSSProperties, useEffect } from 'react'
 
@@ -37,9 +37,7 @@ export async function getStaticProps({ params: { slug } }) {
     }
   }
 
-  const postData = await getPageData(post.PageId)
-  post['content'] = postData.blocks
-
+  const blocks = await getAllBlocksByPageId(post.PageId)
   //const blocks = await getAllBlocksByPageId(post.PageId)
   const recentPosts = await getPosts(5)
   const tags = await getAllTags()
@@ -47,8 +45,8 @@ export async function getStaticProps({ params: { slug } }) {
   return {
     props: {
       post,
-
-      //recentPosts,
+      blocks,
+      recentPosts,
       tags,
     },
     revalidate: 60,
@@ -71,8 +69,8 @@ const listTypes = new Set(['bulleted_list', 'numbered_list'])
 
 const RenderPost = ({
   post,
-  //blocks = [],
-  //recentPosts = [],
+  blocks = [],
+  recentPosts = [],
   tags = [],
   redirect,
 }) => {
@@ -158,295 +156,123 @@ const RenderPost = ({
                 <a className={blogStyles.tag}>🔖&nbsp;&nbsp;{tag}</a>
               </Link>
             ))}
+        </div>
+        <hr />
 
-          <hr />
+        {blocks.length === 0 && <p>This post has no content</p>}
 
-          {(!post.content || post.content.length === 0) && (
-            <p>This post has no content</p>
-          )}
+        {blocks.map((block, blockIdx) => {
+          const isLast = blockIdx === blocks.length - 1
+          const isList =
+            block.Type === 'bulleted_list_item' ||
+            block.Type === 'numbered_list_item'
+          let toRender = []
+          let richText
 
-          {(post.content || []).map((block, blockIdx) => {
-            const { value } = block
-            const { type, properties, id, parent_id } = value
-            const isLast = blockIdx === post.content.length - 1
-            const isList = listTypes.has(type)
-            let toRender = []
+          if (!!block.RichTexts && block.RichTexts.length > 0) {
+            richText = block.RichTexts[0]
+          }
 
-            if (isList) {
-              listTagName =
-                components[block.Type === 'bulleted_list_item' ? 'ul' : 'ol']
-              listLastId = `list${id}`
+          if (isList) {
+            listTagName =
+              components[block.Type === 'bulleted_list_item' ? 'ul' : 'ol']
+            listLastId = `list${block.Id}`
 
-              listMap[id] = {
-                key: id,
-                nested: [],
-                children: textBlock(properties.title, true, id),
-              }
-
-              if (listMap[parent_id]) {
-                listMap[id].isNested = true
-                listMap[parent_id].nested.push(id)
-              }
+            listMap[block.Id] = {
+              key: block.Id,
+              nested: [],
+              children: textBlock(block, true, block.Id),
             }
+          }
 
-            if (listTagName && (isLast || !isList)) {
-              toRender.push(
-                React.createElement(
-                  listTagName,
-                  { key: listLastId! },
-                  Object.keys(listMap).map(itemId => {
-                    if (listMap[itemId].isNested) return null
+          if (listTagName && (isLast || !isList)) {
+            toRender.push(
+              React.createElement(
+                listTagName,
+                { key: listLastId! },
+                Object.keys(listMap).map(itemId => {
+                  if (listMap[itemId].isNested) return null
 
-                    const createEl = item =>
-                      React.createElement(
-                        components.li || 'ul',
-                        { key: item.key },
-                        item.children,
-                        item.nested.length > 0
-                          ? React.createElement(
-                              components.ul || 'ul',
-                              { key: item + 'sub-list' },
-                              item.nested.map(nestedId =>
-                                createEl(listMap[nestedId])
-                              )
+                  const createEl = item =>
+                    React.createElement(
+                      components.li || 'ul',
+                      { key: item.key },
+                      item.children,
+                      item.nested.length > 0
+                        ? React.createElement(
+                            components.ul || 'ul',
+                            { key: item + 'sub-list' },
+                            item.nested.map(nestedId =>
+                              createEl(listMap[nestedId])
                             )
-                          : null
-                      )
-                    return createEl(listMap[itemId])
-                  })
-                )
+                          )
+                        : null
+                    )
+                  return createEl(listMap[itemId])
+                })
               )
-              listMap = {}
-              listLastId = null
-              listTagName = null
-            }
+            )
+            listMap = {}
+            listLastId = null
+            listTagName = null
+          }
 
-            const renderHeading = (Type: string | React.ComponentType) => {
+          const renderHeading = (Type: string | React.ComponentType) => {
+            if (!!richText) {
               toRender.push(
-                <Heading key={id}>
-                  <Type key={id}>{textBlock(properties.title, true, id)}</Type>
+                <Heading key={block.Id}>
+                  <Type key={block.Id}>{textBlock(block, true, block.Id)}</Type>
                 </Heading>
               )
             }
+          }
+          switch (block.Type) {
+            case 'paragraph':
+              toRender.push(textBlock(block, false, block.Id))
+              break
+            case 'heading_1':
+              renderHeading('h1')
+              break
+            case 'heading_2':
+              renderHeading('h2')
+              break
+            case 'heading_3':
+              renderHeading('h3')
+              break
 
-            switch (type) {
-              case 'page':
-              case 'divider':
-                break
-              case 'text':
-                if (properties) {
-                  toRender.push(textBlock(properties.title, false, id))
-                } else {
-                  toRender.push(textBlock([['']], false, id))
-                }
-                break
-              case 'image':
-              case 'video':
-              case 'embed': {
-                const { format = {} } = value
-                const {
-                  block_width,
-                  block_height,
-                  display_source,
-                  properties: image_properties,
-                  block_aspect_ratio,
-                } = format
-                const baseBlockWidth = 768
-                const roundFactor = Math.pow(10, 2)
-                // calculate percentages
-                const width = block_width
-                  ? `${Math.round(
-                      (block_width / baseBlockWidth) * 100 * roundFactor
-                    ) / roundFactor}%`
-                  : block_height || '100%'
-                const isImage = type === 'image'
-                const Comp = isImage ? 'img' : 'video'
-                const useWrapper = block_aspect_ratio && !block_height
-                const childStyle: CSSProperties = useWrapper
-                  ? {
-                      width: '100%',
-                      height: '100%',
-                      border: 'none',
-                      position: 'absolute',
-                      top: 0,
-                    }
-                  : {
-                      width,
-                      border: 'none',
-                      height: block_height,
-                      display: 'block',
-                      maxWidth: '100%',
-                    }
-                const caption = properties.caption || ''
-                let child = null
-                if (!isImage && !value.file_ids) {
-                  // external resource use iframe
-                  child = (
-                    <iframe
-                      style={childStyle}
-                      src={display_source}
-                      key={!useWrapper ? id : undefined}
-                      className={!useWrapper ? 'asset-wrapper' : undefined}
-                    />
-                  )
-                } else {
-                  // notion resource
-                  child = (
-                    <Comp
-                      key={!useWrapper ? id : undefined}
-                      src={`/api/asset?assetUrl=${encodeURIComponent(
-                        properties.source[0][0] as string
-                      )}&blockId=${id}`}
-                      controls={!isImage}
-                      alt={`An ${isImage ? 'image' : 'video'} from Notion`}
-                      loop={!isImage}
-                      muted={!isImage}
-                      autoPlay={!isImage}
-                      style={childStyle}
-                    />
-                  )
-                }
-                toRender.push(
-                  useWrapper ? (
-                    <div
-                      style={{
-                        paddingTop: `${Math.round(block_aspect_ratio * 100)}%`,
-                        position: 'relative',
-                      }}
-                      className="asset-wrapper"
-                      key={id}
-                    >
-                      {child}
-                    </div>
-                  ) : (
-                    child
-                  )
+            default:
+              if (
+                process.env.NODE_ENV !== 'production' &&
+                !(
+                  block.Type === 'bulleted_list_item' ||
+                  block.Type === 'numbered_list_item'
                 )
-                if (caption != '') {
-                  toRender.push(
-                    <div className={blogStyles.caption}>{caption}</div>
-                  )
-                }
-                break
+              ) {
+                console.log('unknown type', block.Type)
               }
-              case 'header':
-                renderHeading('h1')
-                break
-              case 'sub_header':
-                renderHeading('h2')
-                break
-              case 'sub_sub_header':
-                renderHeading('h3')
-                break
-              case 'code': {
-                if (properties.title) {
-                  const content = properties.title[0][0]
-                  const language = properties.language[0][0]
-                  if (language === 'LiveScript') {
-                    // this requires the DOM for now
-                    toRender.push(
-                      <ReactJSXParser
-                        key={id}
-                        jsx={content}
-                        components={components}
-                        componentsOnly={false}
-                        renderInpost={false}
-                        allowUnknownElements={true}
-                        blacklistedTags={['script', 'style']}
-                      />
-                    )
-                  } else {
-                    toRender.push(
-                      <components.Code key={id} language={language || ''}>
-                        {content}
-                      </components.Code>
-                    )
-                  }
-                }
-                break
-              }
-              case 'quote': {
-                if (properties.title) {
-                  toRender.push(
-                    React.createElement(
-                      components.blockquote,
-                      { key: id },
-                      properties.title
-                    )
-                  )
-                }
-                break
-              }
-              case 'callout': {
-                toRender.push(
-                  <div className="callout" key={id}>
-                    {value.format?.page_icon && (
-                      <div>{value.format?.page_icon}</div>
-                    )}
-                    <div className="text">
-                      {textBlock(properties.title, true, id)}
-                    </div>
-                  </div>
-                )
-                break
-              }
-              case 'tweet': {
-                if (properties.html) {
-                  toRender.push(
-                    <div
-                      dangerouslySetInnerHTML={{ __html: properties.html }}
-                      key={id}
-                    />
-                  )
-                }
-                break
-              }
-              case 'equation': {
-                if (properties && properties.title) {
-                  const content = properties.title[0][0]
-                  toRender.push(
-                    <components.Equation key={id} displayMode={true}>
-                      {content}
-                    </components.Equation>
-                  )
-                }
-                break
-              }
-
-              default:
-                if (
-                  process.env.NODE_ENV !== 'production' &&
-                  !(
-                    block.Type === 'bulleted_list_item' ||
-                    block.Type === 'numbered_list_item'
-                  )
-                ) {
-                  console.log('unknown type', block.Type)
-                }
-                break
-            }
-            return toRender
-          })}
-        </div>
-        <div className={blogStyles.tagIndex}>
-          <h3>タグ</h3>
-          {tags.length === 0 && (
-            <div className={blogStyles.noTags}>There are no tags yet</div>
-          )}
-          {tags.length > 0 && (
-            <ul>
-              {tags.map(tag => {
-                return (
-                  <li key={tag}>
-                    <Link href="/blog/tag/[tag]" as={getTagLink(tag)} passHref>
-                      <a>{tag}</a>
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
-          )}
-        </div>
+              break
+          }
+          return toRender
+        })}
+      </div>
+      <div className={blogStyles.tagIndex}>
+        <h3>タグ</h3>
+        {tags.length === 0 && (
+          <div className={blogStyles.noTags}>There are no tags yet</div>
+        )}
+        {tags.length > 0 && (
+          <ul>
+            {tags.map(tag => {
+              return (
+                <li key={tag}>
+                  <Link href="/blog/tag/[tag]" as={getTagLink(tag)} passHref>
+                    <a>{tag}</a>
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        )}
       </div>
       )
     </>
