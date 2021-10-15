@@ -11,8 +11,9 @@ const navItems: { label: string; page?: string; link?: string }[] = [
   // { label: 'Source Code', link: 'https://github.com/ijjk/notion-blog' },
 ]
 
-const ogImageUrl = 'https://notion-blog.now.sh/og-image.png'
+//const ogImageUrl = 'https://notion-blog.now.sh/og-image.png'
 const defaultUrl = 'https://deltgraphos.com'
+const defaultTitle = 'Deltographos :: Blog'
 
 const Header = ({
   path = '',
@@ -31,11 +32,15 @@ const Header = ({
           content="An example Next.js site using Notion for the blog"
         />
         <meta property="og:url" content={`${defaultUrl}${path}`} />
-        <meta name="og:title" content="My Notion Blog" />
+        <meta name="og:title" content={!titlePre ? defaultTitle : titlePre} />
         <meta property="og:image" content={ogImageUrl} />
-        <meta name="twitter:site" content="@_ijjk" />
-        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@sxolastikos" />
+        <meta
+          name="twitter:card"
+          content={!ogImageUrl ? 'summary' : 'summary_large_image'}
+        />
         <meta name="twitter:image" content={ogImageUrl} />
+        <link rel="canonical" href={`${defaultUrl}${path}`} />
       </Head>
       <ul>
         {navItems.map(({ label, page, link }) => (
