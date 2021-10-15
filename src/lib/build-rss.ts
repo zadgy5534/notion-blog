@@ -36,7 +36,7 @@ function mapToEntry(post) {
       <content type="xhtml">
         <div xmlns="http://www.w3.org/1999/xhtml">
            ${
-             renderToStaticMarkup(post.Excerpt)
+             renderToStaticMarkup(post.content)
              //   post.preview
              //     ? (post.preview || []).map((block, idx) =>
              //         textBlock(block, false, post.title + idx)
