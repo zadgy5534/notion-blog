@@ -252,6 +252,17 @@ const RenderPost = ({
                 )
               }
               break
+            case 'quote':
+              toRender.push(
+                React.createElement(
+                  components.blockquote,
+                  { key: block.Id },
+                  block.Quote.Text.map(richText => richText.Text.Content).join(
+                    ''
+                  )
+                )
+              )
+              break
             /* case 'bookmark':
               toRender.push(<a href={block.Bookmark.Url} />)
               if (
