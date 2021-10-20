@@ -252,6 +252,19 @@ const RenderPost = ({
                 )
               }
               break
+            case 'bookmark':
+              toRender.push(<img src={block.Bookmark.Url} />)
+              if (
+                block.Bookmark.Caption.length > 0 &&
+                block.Bookmark.Caption[0].Text.Content
+              ) {
+                toRender.push(
+                  <div className={blogStyles.caption}>
+                    {block.Bookmark.Caption[0].Text.Content}
+                  </div>
+                )
+              }
+              break
             default:
               if (
                 process.env.NODE_ENV !== 'production' &&
