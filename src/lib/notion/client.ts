@@ -395,7 +395,7 @@ export async function getAllBlocksByPageId(pageId) {
           }
           break
 
-        case 'bookmark':
+        /* case 'bookmark':
           const bookmark: Bookmark = {
             Caption: item.bookmark.caption.map(item => {
               const text: Text = {
@@ -430,7 +430,7 @@ export async function getAllBlocksByPageId(pageId) {
             HasChildren: item.has_children,
             Bookmark: bookmark,
           }
-          break
+          break */
         default:
           block = {
             Id: item.id,
