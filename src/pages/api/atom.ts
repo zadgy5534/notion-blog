@@ -20,8 +20,12 @@ function mapToEntry(post) {
       <id>https://deltographos.com${getBlogLink(post.Slug)}</id>
       <title>${decode(post.Title)}</title>
       <link href="https://deltographos.com${getBlogLink(post.Slug)}"/>
-      
+      <published>${date.toJSON()}</published>   
       <updated>${new Date(post.Date).toJSON()}</updated>
+      <author>
+        <name>@sxolastikos</name>
+        <uri>https://twitter.com/sxolastikos</uri>
+      </author>
       <content type="xhtml">
         <div xmlns="http://www.w3.org/1999/xhtml">
           ${renderToStaticMarkup(post.Excerpt)}
@@ -36,6 +40,11 @@ function concat(total, item) {
 
 function createRSS(posts = []) {
   const postsString = posts.map(mapToEntry).reduce(concat, '')
+  const updated =
+    posts.length > 0
+      ? `
+    <updated>${new Date(posts[0].Date).toJSON()}</updated>`
+      : ''
 
   return `<?xml version="1.0" encoding="utf-8"?>
   <feed xmlns="http://www.w3.org/2005/Atom">
