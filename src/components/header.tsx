@@ -41,6 +41,12 @@ const Header = ({
         />
         <meta name="twitter:image" content={ogImageUrl} />
         <link rel="canonical" href={`${defaultUrl}${path}`} />
+        <link
+          rel="alternate"
+          type="application/atom+xml"
+          href="/atom"
+          title="Atom Feed"
+        />
       </Head>
       <ul>
         {navItems.map(({ label, page, link }) => (

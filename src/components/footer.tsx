@@ -1,13 +1,9 @@
 import ExtLink from './ext-link'
+import Link from 'next/link'
 
 export default () => (
   <>
     <footer>
-      <span>
-        <p>
-          <ExtLink href="https://deltographos.com/atom">Atom Feed</ExtLink>
-        </p>
-      </span>
       <span>
         ブログ記事はこちらにまとめています。＝＞　
         <ExtLink
