@@ -51,8 +51,7 @@ function createRSS(posts = []) {
     <title>deltographos</title>
     <subtitle>deltographosの更新情報</subtitle>
     <link href="https://deltographos.com/atom" rel="self" type="application/rss+xml"/>
-    <link href="https://deltographos.com" />
-    <updated>${new Date(posts[0].Date).toJSON()}</updated>
+    <link href="https://deltographos.com" />${updated}
     <id>deltographos.com/atom</id>${postsString}
   </feed>`
 }
