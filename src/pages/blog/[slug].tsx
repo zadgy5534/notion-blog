@@ -230,7 +230,7 @@ const RenderPost = ({
             }
           }
 
-          const renderBookmark = ({ link, title, description, format }) => {
+          /*          const renderBookmark = ({ link, title, description, format }) => {
             const { bookmark_icon: icon, bookmark_cover: cover } = format
             toRender.push(
               <div className={blogStyles.bookmark}>
@@ -279,7 +279,7 @@ const RenderPost = ({
                 </div>
               </div>
             )
-          }
+          } */
 
           switch (block.Type) {
             case 'paragraph':
@@ -318,11 +318,11 @@ const RenderPost = ({
                 )
               )
               break
-            case 'bookmark':
+            /*             case 'bookmark':
               const { link, title, description } = properties
               const { format = {} } = value
               renderBookmark({ link, title, description, format })
-              break
+              break */
             default:
               if (
                 process.env.NODE_ENV !== 'production' &&
