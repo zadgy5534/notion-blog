@@ -163,8 +163,8 @@ const RenderPost = ({
 
         {blocks.map((block, blockIdx) => {
           //{(post.content || []).map((block, blockIdx) => {
-          const { value } = block
-          const { type, properties, id, parent_id } = value
+          //const { value } = block
+          //const { type, properties, id, parent_id } = value
           const isLast = blockIdx === blocks.length - 1
           const isList =
             block.Type === 'bulleted_list_item' ||
