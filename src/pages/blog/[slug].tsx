@@ -162,6 +162,9 @@ const RenderPost = ({
         {blocks.length === 0 && <p>This post has no content</p>}
 
         {blocks.map((block, blockIdx) => {
+          //{(post.content || []).map((block, blockIdx) => {
+          const { value } = block
+          const { type, properties, id, parent_id } = value
           const isLast = blockIdx === blocks.length - 1
           const isList =
             block.Type === 'bulleted_list_item' ||
@@ -226,6 +229,58 @@ const RenderPost = ({
               )
             }
           }
+
+          const renderBookmark = ({ link, title, description, format }) => {
+            const { bookmark_icon: icon, bookmark_cover: cover } = format
+            toRender.push(
+              <div className={blogStyles.bookmark}>
+                <div>
+                  <div style={{ display: 'flex' }}>
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={blogStyles.bookmarkContentsWrapper}
+                      href={link}
+                    >
+                      <div
+                        role="button"
+                        className={blogStyles.bookmarkContents}
+                      >
+                        <div className={blogStyles.bookmarkInfo}>
+                          <div className={blogStyles.bookmarkTitle}>
+                            {title}
+                          </div>
+                          <div className={blogStyles.bookmarkDescription}>
+                            {description}
+                          </div>
+                          <div className={blogStyles.bookmarkLinkWrapper}>
+                            <img
+                              src={icon}
+                              className={blogStyles.bookmarkLinkIcon}
+                            />
+                            <div className={blogStyles.bookmarkLink}>
+                              {link}
+                            </div>
+                          </div>
+                        </div>
+                        <div className={blogStyles.bookmarkCoverWrapper1}>
+                          <div className={blogStyles.bookmarkCoverWrapper2}>
+                            <div className={blogStyles.bookmarkCoverWrapper3}>
+                              <img
+                                src={cover}
+                                className={blogStyles.bookmarkCover}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )
+          }
+
           switch (block.Type) {
             case 'paragraph':
               toRender.push(textBlock(block, false, block.Id))
@@ -263,19 +318,11 @@ const RenderPost = ({
                 )
               )
               break
-            /* case 'bookmark':
-              toRender.push(<a href={block.Bookmark.Url} />)
-              if (
-                block.Bookmark.Caption.length > 0 &&
-                block.Bookmark.Caption[0].Text.Content
-              ) {
-                toRender.push(
-                  <div className={blogStyles.caption}>
-                    {block.Bookmark.Caption[0].Text.Content}
-                  </div>
-                )
-              }
-              break */
+            case 'bookmark':
+              const { link, title, description } = properties
+              const { format = {} } = value
+              renderBookmark({ link, title, description, format })
+              break
             default:
               if (
                 process.env.NODE_ENV !== 'production' &&

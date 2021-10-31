@@ -437,7 +437,7 @@ export async function getAllBlocksByPageId(pageId) {
             Quote: quote,
           }
           break
-        /* case 'bookmark':
+        /*         case 'bookmark':
           const bookmark: Bookmark = {
             Caption: item.bookmark.caption.map(item => {
               const text: Text = {
