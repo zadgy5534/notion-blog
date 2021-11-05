@@ -144,50 +144,6 @@ const RenderPostsBeforeDate = ({
             </div>
           )}
         </div>
-        <div className={blogStyles.sideMenu}>
-          <h3>おすすめ記事</h3>
-          <hr />
-
-          {rankedPosts.length === 0 && (
-            <div className={blogStyles.noContents}>There are no posts yet</div>
-          )}
-          {rankedPosts.length > 0 && (
-            <ul>
-              {rankedPosts.map(rankedPost => {
-                return (
-                  <li key={rankedPost.Slug}>
-                    <Link
-                      href="/blog/[slug]"
-                      as={getBlogLink(rankedPost.Slug)}
-                      passHref
-                    >
-                      <a>{rankedPost.Title}</a>
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
-          )}
-          <h3>カテゴリー</h3>
-          <hr />
-
-          {tags.length === 0 && (
-            <div className={blogStyles.noContents}>There are no tags yet</div>
-          )}
-          {tags.length > 0 && (
-            <ul>
-              {tags.map(tag => {
-                return (
-                  <li key={tag}>
-                    <Link href="/blog/tag/[tag]" as={getTagLink(tag)} passHref>
-                      <a>{tag}</a>
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
-          )}
-        </div>
       </div>
     </>
   )

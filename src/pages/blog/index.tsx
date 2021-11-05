@@ -7,10 +7,11 @@ import sharedStyles from '../../styles/shared.module.css'
 import { getBlogLink, getTagLink } from '../../lib/blog-helpers'
 
 //import { textBlock } from '../../lib/notion/renderers'
-import { getPosts, getAllTags } from '../../lib/notion/client'
+import { getPosts, getFirstPost, getAllTags } from '../../lib/notion/client'
 
 export async function getStaticProps() {
   const posts = await getPosts()
+  const firstPost = await getFirstPost()
   const tags = await getAllTags()
 
   return {
@@ -22,7 +23,7 @@ export async function getStaticProps() {
   }
 }
 
-export default ({ posts = [], tags = [] }) => {
+const RenderPosts = ({ posts = [], firstPost, tags = [] }) => {
   return (
     <>
       <Header path="/blog" titlePre="" />
@@ -91,3 +92,5 @@ export default ({ posts = [], tags = [] }) => {
     </>
   )
 }
+
+export default RenderPosts
