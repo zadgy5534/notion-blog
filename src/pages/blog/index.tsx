@@ -4,7 +4,7 @@ import Header from '../../components/header'
 import blogStyles from '../../styles/blog.module.css'
 import sharedStyles from '../../styles/shared.module.css'
 
-import { getBlogLink, getTagLink } from '../../lib/blog-helpers'
+import { getBlogLink, getTagLink, getBeforeLink } from '../../lib/blog-helpers'
 
 //import { textBlock } from '../../lib/notion/renderers'
 import { getPosts, getFirstPost, getAllTags } from '../../lib/notion/client'
@@ -17,6 +17,7 @@ export async function getStaticProps() {
   return {
     props: {
       posts,
+      firstPost,
       tags,
     },
     revalidate: 60,
@@ -69,6 +70,18 @@ const RenderPosts = ({ posts = [], firstPost, tags = [] }) => {
             </div>
           )
         })}
+        {firstPost.Date !== posts[posts.length - 1].Date && (
+          <div className={blogStyles.nextContainer}>
+            <hr />
+            <Link
+              href="/blog/before/[date]"
+              as={getBeforeLink(posts[posts.length - 1].Date)}
+              passHref
+            >
+              <a className={blogStyles.nextButton}>次のページ ＞</a>
+            </Link>
+          </div>
+        )}
       </div>
       <div className={blogStyles.tagIndex}>
         <h3>タグ</h3>
