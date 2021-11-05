@@ -125,9 +125,9 @@ const RenderPostsBeforeDate = ({
                     ))}
                 </div>
                 <p>{post.Excerpt}</p>
-                <Link href="/blog/[slug]" as={getBlogLink(post.Slug)} passHref>
+                {/* <Link href="/blog/[slug]" as={getBlogLink(post.Slug)} passHref>
                   <a className={blogStyles.expandButton}>続きを読む</a>
-                </Link>
+                </Link> */}
               </div>
             )
           })}
