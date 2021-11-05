@@ -21,11 +21,11 @@ const BLOG_INDEX_ID = normalizeId(process.env.BLOG_INDEX_ID)
 const API_ENDPOINT = 'https://www.notion.so/api/v3'
 
 // for official API
-const NOTION_API_SECRET = process.env.NOTION_API_SECRET
-const DATABASE_ID = process.env.DATABASE_ID
+export const NOTION_API_SECRET = process.env.NOTION_API_SECRET
+export const DATABASE_ID = process.env.DATABASE_ID
 
 const BLOG_INDEX_CACHE = path.resolve('.blog_index_data')
-const NUMBER_OF_POSTS_PER_PAGE = 10
+export const NUMBER_OF_POSTS_PER_PAGE = 10
 
 module.exports = {
   NOTION_TOKEN,
