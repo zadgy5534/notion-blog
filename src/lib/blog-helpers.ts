@@ -6,6 +6,10 @@ export const getTagLink = (tag: string) => {
   return `/blog/tag/${encodeURIComponent(tag)}`
 }
 
+export const getBeforeLink = (date: string) => {
+  return `/blog/before/${date}`
+}
+
 export const getDateStr = date => {
   return new Date(date).toLocaleString('en-US', {
     month: 'long',
