@@ -17,13 +17,11 @@ const renderBody = () => (
       <h1>Deltographos</h1>
       <h2>
         powered by Notion Blog
-        {
-          <ExtLink
+        {/*  <ExtLink
             href="https://github.com/vercel/next.js/issues/9524"
             className="dotted"
             style={{ color: 'inherit' }}
-          ></ExtLink>
-        }
+          ></ExtLink> */}
       </h2>
 
       <div className="explanation">
