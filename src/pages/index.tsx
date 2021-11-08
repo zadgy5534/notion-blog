@@ -4,17 +4,17 @@ import ExtLink from '../components/ext-link'
 import GitHub from '../components/svgs/github'
 import sharedStyles from '../styles/shared.module.css'
 
-export default () => (
+const renderBody = () => (
   <>
     <Header titlePre="Home" />
     <div className={sharedStyles.layout}>
-      <img
+      {/* <img
         src="/vercel-and-notion.png"
         height="85"
         width="250"
         alt="Vercel + Notion"
-      />
-      <h1>Deltographos :: Blog</h1>
+      /> */}
+      <h1>Deltographos</h1>
       <h2>
         powered by Notion Blog
         {
@@ -54,3 +54,5 @@ export default () => (
     </div>
   </>
 )
+
+export default renderBody

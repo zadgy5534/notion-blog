@@ -1,3 +1,5 @@
-export default props => (
+const Prop = props => (
   <a {...props} rel="noopener" target={props.target || '_blank'} />
 )
+
+export default Prop

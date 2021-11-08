@@ -13,7 +13,7 @@ const navItems: { label: string; page?: string; link?: string }[] = [
 
 //const ogImageUrl = 'https://notion-blog.now.sh/og-image.png'
 const defaultUrl = 'https://deltgraphos.com'
-const defaultTitle = 'Deltographos -- Blog'
+const defaultTitle = 'Deltographos - Blog'
 
 const Header = ({
   path = '',
@@ -26,7 +26,10 @@ const Header = ({
   return (
     <header className={styles.header}>
       <Head>
-        <title>{titlePre ? `${titlePre} |` : ''} Deltographos - Blog</title>
+        <title>
+          {titlePre ? `${titlePre} |` : 'Deltographos - Blog'} Deltographos -
+          Blog
+        </title>
         <meta
           name="description"
           content="An example Next.js site using Notion for the blog"

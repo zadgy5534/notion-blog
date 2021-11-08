@@ -27,9 +27,10 @@ export async function getStaticProps() {
 const RenderPosts = ({ posts = [], firstPost, tags = [] }) => {
   return (
     <>
-      <Header path="/blog" titlePre="" />
+      <Header path="/blog" titlePre="Blog" />
 
       <div className={`${sharedStyles.layout} ${blogStyles.blogIndex}`}>
+        <h1>Deltographos :: Blog</h1>
         {posts.length === 0 && (
           <p className={blogStyles.noPosts}>There are no posts yet</p>
         )}
