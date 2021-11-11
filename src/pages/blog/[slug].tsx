@@ -304,6 +304,8 @@ const RenderPost = ({
                 )
               }
               break
+            case 'divider':
+              break
             case 'quote':
               toRender.push(
                 React.createElement(

@@ -5,12 +5,11 @@ const RenderFoot = () => (
   <>
     <footer>
       <span>
-        RSS/Atom Feed ＝＞
-        <ExtLink href="https://deltographos.com/atom">こちら</ExtLink>
+        <ExtLink href="https://deltographos.com/atom">RSS/Atom Feed</ExtLink>
       </span>
       <p></p>
       <span>
-        ブログ記事はこちらにまとめています。＝＞　
+        過去記事は定期的にこちらにまとめています。＝＞　
         <ExtLink
           href="https://deltographos.notion.site/"
           style={{ color: 'inherit' }}
