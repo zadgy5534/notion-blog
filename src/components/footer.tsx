@@ -9,13 +9,11 @@ const RenderFoot = () => (
       </span>
       <p></p>
       <span>
-        過去記事は定期的にこちらにまとめています。＝＞　
-        <ExtLink
-          href="https://deltographos.notion.site/"
-          style={{ color: 'inherit' }}
-        >
-          （deltographos.notion.site）
+        過去記事は定期的に
+        <ExtLink href="https://deltographos.notion.site/">
+          "deltographos.notion.site"
         </ExtLink>
+        にまとめています。
       </span>
       <ExtLink href="https://www.medieviste.org">
         <img
