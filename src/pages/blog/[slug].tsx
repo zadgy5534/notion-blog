@@ -306,6 +306,15 @@ const RenderPost = ({
               break
             case 'divider':
               break
+            case 'code':
+              toRender.push(
+                <components.Code key={block.Id} language={block.Language || ''}>
+                  {block.Code.Text.map(richText => richText.Text.Content).join(
+                    ''
+                  )}
+                </components.Code>
+              )
+              break
             case 'quote':
               toRender.push(
                 React.createElement(

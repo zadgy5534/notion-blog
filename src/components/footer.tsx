@@ -1,7 +1,7 @@
 import ExtLink from './ext-link'
 import Link from 'next/link'
 
-const RenderFoot = () => (
+const renderFoot = () => (
   <>
     <footer>
       <span>
@@ -33,4 +33,4 @@ const RenderFoot = () => (
   </>
 )
 
-export default RenderFoot
+export default renderFoot
