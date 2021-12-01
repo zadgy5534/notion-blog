@@ -7,7 +7,6 @@ const renderFoot = () => (
       <span>
         <ExtLink href="https://deltographos.com/atom">RSS/Atom Feed</ExtLink>
       </span>
-      <p></p>
       <span>
         過去記事は定期的に
         <ExtLink href="https://deltographos.notion.site/">
