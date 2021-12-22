@@ -284,6 +284,14 @@ const RenderPost = ({
                 />
               )
               break
+            case 'link_preview':
+              toRender.push(
+                <LinkPreview
+                  url={block.LinkPreview.Url}
+                  className={blogStyles.linkPreview}
+                />
+              )
+              break
 
             default:
               if (
