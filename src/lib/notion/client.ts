@@ -19,6 +19,14 @@ interface Block {
   Id: string
   Type: string
   HasChildren: boolean
+  RichTexts?: RichText[]
+  Image?: Image
+  Code?: Code
+  Quote?: Quote
+  //Callout?: Callout
+  Embed?: Embed
+  Bookmark?: Bookmark
+  //LinkPreview?: LinkPreview
 }
 
 interface ParagraphBlock extends Block {
@@ -68,9 +76,12 @@ interface Quote {
   Text: RichText[]
 }
 
+interface Embed {
+  Url: string
+}
+
 interface Bookmark {
-  Caption: RichText[]
-  Type: string
+  Url: string
 }
 
 interface RichText {
@@ -517,33 +528,21 @@ export async function getAllBlocksByPageId(pageId) {
             Code: code,
           }
           break
-        /*         case 'bookmark':
+        case 'embed':
+          const embed: Embed = {
+            Url: item.embed.url,
+          }
+
+          block = {
+            Id: item.id,
+            Type: item.type,
+            HasChildren: item.has_children,
+            Embed: embed,
+          }
+          break
+        case 'bookmark':
           const bookmark: Bookmark = {
-            Caption: item.bookmark.caption.map(item => {
-              const text: Text = {
-                Content: item.text.content,
-                Link: item.text.link,
-              }
-
-              const annotation: Annotation = {
-                Bold: item.annotations.bold,
-                Italic: item.annotations.italic,
-                Strikethrough: item.annotations.strikethrough,
-                Underline: item.annotations.underline,
-                Code: item.annotations.code,
-                Color: item.annotations.color,
-              }
-
-              const richText: RichText = {
-                Text: text,
-                Annotation: annotation,
-                PlainText: item.plain_text,
-                Href: item.href,
-              }
-
-              return richText
-            }),
-            Type: item.bookmark.type,
+            Url: item.bookmark.url,
           }
 
           block = {
@@ -552,7 +551,7 @@ export async function getAllBlocksByPageId(pageId) {
             HasChildren: item.has_children,
             Bookmark: bookmark,
           }
-          break */
+          break
         default:
           block = {
             Id: item.id,

@@ -12,5 +12,7 @@ export default {
 
   Code: dynamic(() => import('./code')),
   Counter: dynamic(() => import('./counter')),
+  //Callout: dynamic(() => import('./callout')),
   Equation: dynamic(() => import('./equation')),
+  TweetEmbed: dynamic(() => import('./tweet-embed')),
 }

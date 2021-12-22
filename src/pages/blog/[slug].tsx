@@ -1,14 +1,15 @@
+const path = require('path')
+
 import Link from 'next/link'
 import fetch from 'node-fetch'
 import { useRouter } from 'next/router'
 import Header from '../../components/header'
 import Heading from '../../components/heading'
 import components from '../../components/dynamic'
-import ReactJSXParser from '@zeit/react-jsx-parser'
-import blogStyles from '../../styles/blog.module.css'
-//import getPageData from '../../lib/notion/getPageData'
 
-import React, { CSSProperties, useEffect } from 'react'
+import blogStyles from '../../styles/blog.module.css'
+
+import React, { useEffect } from 'react'
 
 import { getBlogLink, getTagLink } from '../../lib/blog-helpers'
 import { textBlock } from '../../lib/notion/renderers'
@@ -19,6 +20,8 @@ import {
   getAllTags,
   getAllBlocksByPageId,
 } from '../../lib/notion/client'
+
+import { LinkPreview } from '@dhaiwat10/react-link-preview'
 
 // Get the data for each blog post
 export async function getStaticProps({ params: { slug } }) {
@@ -87,21 +90,6 @@ const RenderPost = ({
     }
   } = {}
 
-  // useEffect(() => {
-  //   const twitterSrc = 'https://platform.twitter.com/widgets.js'
-  //   // make sure to initialize any new widgets loading on
-  //   // client navigation
-  //   if (post && post.hasTweet) {
-  //     if ((window as any)?.twttr?.widgets) {
-  //       ;(window as any).twttr.widgets.load()
-  //     } else if (!document.querySelector(`script[src="${twitterSrc}"]`)) {
-  //       const script = document.createElement('script')
-  //       script.async = true
-  //       script.src = twitterSrc
-  //       document.querySelector('body').appendChild(script)
-  //     }
-  //   }
-  // }, [])
   useEffect(() => {
     if (redirect && !post) {
       router.replace(redirect)
@@ -227,57 +215,6 @@ const RenderPost = ({
             }
           }
 
-          /*          const renderBookmark = ({ link, title, description, format }) => {
-            const { bookmark_icon: icon, bookmark_cover: cover } = format
-            toRender.push(
-              <div className={blogStyles.bookmark}>
-                <div>
-                  <div style={{ display: 'flex' }}>
-                    <a
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={blogStyles.bookmarkContentsWrapper}
-                      href={link}
-                    >
-                      <div
-                        role="button"
-                        className={blogStyles.bookmarkContents}
-                      >
-                        <div className={blogStyles.bookmarkInfo}>
-                          <div className={blogStyles.bookmarkTitle}>
-                            {title}
-                          </div>
-                          <div className={blogStyles.bookmarkDescription}>
-                            {description}
-                          </div>
-                          <div className={blogStyles.bookmarkLinkWrapper}>
-                            <img
-                              src={icon}
-                              className={blogStyles.bookmarkLinkIcon}
-                            />
-                            <div className={blogStyles.bookmarkLink}>
-                              {link}
-                            </div>
-                          </div>
-                        </div>
-                        <div className={blogStyles.bookmarkCoverWrapper1}>
-                          <div className={blogStyles.bookmarkCoverWrapper2}>
-                            <div className={blogStyles.bookmarkCoverWrapper3}>
-                              <img
-                                src={cover}
-                                className={blogStyles.bookmarkCover}
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            )
-          } */
-
           switch (block.Type) {
             case 'paragraph':
               toRender.push(textBlock(block, false, block.Id))
@@ -305,6 +242,7 @@ const RenderPost = ({
               }
               break
             case 'divider':
+              toRender.push(<hr />)
               break
             case 'code':
               toRender.push(
@@ -326,11 +264,27 @@ const RenderPost = ({
                 )
               )
               break
-            /*             case 'bookmark':
-              const { link, title, description } = properties
-              const { format = {} } = value
-              renderBookmark({ link, title, description, format })
-              break */
+            case 'embed':
+              if (/^https:\/\/twitter\.com/.test(block.Embed.Url)) {
+                toRender.push(<components.TweetEmbed url={block.Embed.Url} />)
+              } else if (/^https:\/\/gist\.github\.com/.test(block.Embed.Url)) {
+                toRender.push(
+                  <LinkPreview
+                    url={block.Embed.Url}
+                    className={blogStyles.linkPreview}
+                  />
+                )
+              }
+              break
+            case 'bookmark':
+              toRender.push(
+                <LinkPreview
+                  url={block.Bookmark.Url}
+                  className={blogStyles.linkPreview}
+                />
+              )
+              break
+
             default:
               if (
                 process.env.NODE_ENV !== 'production' &&
