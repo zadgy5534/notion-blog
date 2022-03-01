@@ -1,7 +1,5 @@
-import Link from 'next/link'
 import Header from '../components/header'
 import ExtLink from '../components/ext-link'
-import GitHub from '../components/svgs/github'
 import sharedStyles from '../styles/shared.module.css'
 
 const renderBody = () => (
