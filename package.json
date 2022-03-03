@@ -15,7 +15,6 @@
   "dependencies": {
     "@dhaiwat10/react-link-preview": "^1.12.2",
     "@notionhq/client": "^0.3.0",
-    "@zeit/react-jsx-parser": "^2.0.0",
     "async-sema": "^3.1.0",
     "eslint": "^8.10.0",
     "eslint-config-next": "^12.1.0",
