@@ -15,4 +15,5 @@ export default {
   //Callout: dynamic(() => import('./callout')),
   Equation: dynamic(() => import('./equation')),
   TweetEmbed: dynamic(() => import('./tweet-embed')),
+  Video: dynamic(() => import('./video')),
 }

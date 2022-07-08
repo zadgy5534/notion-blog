@@ -36,3 +36,30 @@ export const normalizeSlug = slug => {
   }
   return startingSlash || endingSlash ? normalizeSlug(slug) : slug
 }
+
+export const isYouTubeURL = (url: URL): boolean => {
+  if (['www.youtube.com', 'youtu.be'].includes(url.hostname)) {
+    return true
+  }
+  return false
+}
+
+export const parseYouTubeVideoId = (url: URL): string => {
+  if (!isYouTubeURL(url)) return ''
+
+  if (url.hostname === 'youtu.be') {
+    return url.pathname.split('/')[1]
+  } else if (url.pathname === '/watch') {
+    return url.searchParams.get('v')
+  } else {
+    const elements = url.pathname.split('/')
+
+    if (elements.length < 2) return ''
+
+    if (elements[1] === 'v' || elements[1] === 'embed') {
+      return elements[2]
+    }
+  }
+
+  return ''
+}

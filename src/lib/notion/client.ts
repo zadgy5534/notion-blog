@@ -27,6 +27,7 @@ interface Block {
   Embed?: Embed
   Bookmark?: Bookmark
   //LinkPreview?: LinkPreview
+  Video?: Video
 }
 
 interface ParagraphBlock extends Block {
@@ -61,6 +62,10 @@ interface LinkPreviewBlock extends Block {
   LinkPreview: LinkPreview
 }
 
+interface VideoBlock extends Block{
+  Video: Video
+}
+
 interface Image {
   Caption: RichText[]
   Type: string
@@ -86,6 +91,12 @@ interface Embed {
 
 interface Bookmark {
   Url: string
+}
+
+interface Video{
+  Url: string
+  Type: string
+  //External: External
 }
 
 interface LinkPreview {
@@ -572,6 +583,22 @@ export async function getAllBlocksByPageId(pageId) {
             LinkPreview: linkPreview,
           }
           break
+        case 'video':
+          const video: Video = {
+            Type: item.video.type,
+            Url: item.video.url,
+          }
+          /* if (item.video.type === 'external'){
+             video.External = { Url: item.video.external.url }
+          } */
+          block.Video = video
+          /* block = {
+            Id: item.id,
+            Type: item.type,
+            Video: video,
+          } */
+          break
+
         default:
           block = {
             Id: item.id,
