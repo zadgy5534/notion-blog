@@ -96,7 +96,7 @@ interface Bookmark {
 interface Video{
   Url: string
   Type: string
-  //External: External
+  //External?: External
 }
 
 interface LinkPreview {
@@ -586,7 +586,7 @@ export async function getAllBlocksByPageId(pageId) {
         case 'video':
           const video: Video = {
             Type: item.video.type,
-            Url: item.video.url,
+            Url: item.video.external.url,
           }
           /* if (item.video.type === 'external'){
              video.External = { Url: item.video.external.url }

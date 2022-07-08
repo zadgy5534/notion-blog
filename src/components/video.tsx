@@ -1,6 +1,6 @@
 import styles from '../styles/blog.module.css'
 import React from 'react';
-import YouTube, {YouTubeProps } from 'react-youtube';
+import YouTube, { YouTubeProps } from 'react-youtube';
 import { isYouTubeURL, parseYouTubeVideoId } from '../lib/blog-helpers'
 
 const Video=({ block })=> {
@@ -40,4 +40,5 @@ const Video=({ block })=> {
     }
     
     
-    export default Video; 
+    export default Video
+     
