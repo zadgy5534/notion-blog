@@ -66,6 +66,10 @@ interface VideoBlock extends Block{
   Video: Video
 }
 
+interface External {
+  Url: string
+}
+
 interface Image {
   Caption: RichText[]
   Type: string
@@ -94,7 +98,7 @@ interface Bookmark {
 }
 
 interface Video{
-  Url: string
+  //Url: string
   Type: string
   External?: External
 }
@@ -586,11 +590,13 @@ export async function getAllBlocksByPageId(pageId) {
         case 'video':
           const video: Video = {
             Type: item.video.type,
-            Url: item.video.external.url,
+            //Url: item.video.external.url,
           }
-          /* if (item.video.type === 'external'){
-             video.External = { Url: item.video.external.url }
-          } */
+          if (item.video.type === 'external'){
+            video.External = { 
+               Url: item.video.external.url 
+            }
+          }
           block.Video = video
           /* block = {
             Id: item.id,
