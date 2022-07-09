@@ -96,7 +96,7 @@ interface Bookmark {
 interface Video{
   Url: string
   Type: string
-  //External?: External
+  External?: External
 }
 
 interface LinkPreview {
