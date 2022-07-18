@@ -590,19 +590,19 @@ export async function getAllBlocksByPageId(pageId) {
         case 'video':
           const video: Video = {
             Type: item.video.type,
-            //Url: item.video.external.url,
+            //Url: item.video.url,
           }
           if (item.video.type === 'external'){
             video.External = { 
                Url: item.video.external.url 
             }
           }
-          block.Video = video
-          /* block = {
+          //block.Video = video
+          block = {
             Id: item.id,
             Type: item.type,
             Video: video,
-          } */
+          }
           break
 
         default:

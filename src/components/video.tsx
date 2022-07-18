@@ -19,8 +19,8 @@ const Video=({ block })=> {
         event.target.pauseVideo();
       }
     const opts: YouTubeProps['opts'] = {
-        height: '390',
-        width: '640',
+        height: '195',
+        width: '320',
         playerVars: {
           autoplay: 1,
         },
@@ -30,8 +30,7 @@ const Video=({ block })=> {
         if (videoId === '') {
             return null
     }
-
-      
+ 
     return (
         <div className={styles.video}>
             <YouTube videoId={videoId} opts={opts} onReady={onPlayerReady} className={styles.youtube} />

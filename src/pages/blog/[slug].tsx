@@ -22,6 +22,7 @@ import {
 
 import { LinkPreview } from '@dhaiwat10/react-link-preview'
 
+
 // Get the data for each blog post
 export async function getStaticProps({ params: { slug } }) {
   const post = await getPostBySlug(slug)
@@ -274,6 +275,18 @@ const RenderPost = ({
                   />
                 )
               }
+              break
+            case 'video':
+              //if (/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/){
+                toRender.push(
+                  //<components.Video/>
+                  //React.createElement(
+                    components.Video 
+                  //  url={block.Video.External.Url}
+                  ///>
+                  //)
+                )
+              
               break
             case 'bookmark':
               toRender.push(
