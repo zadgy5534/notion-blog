@@ -276,7 +276,7 @@ const RenderPost = ({
                 )
               }
               break
-            case 'video':
+/*             case 'video':
               //if (/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/){
                 toRender.push(
                   //<components.Video/>
@@ -287,7 +287,7 @@ const RenderPost = ({
                   //)
                 )
               
-              break
+              break */
             case 'bookmark':
               toRender.push(
                 <LinkPreview

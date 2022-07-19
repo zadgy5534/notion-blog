@@ -597,12 +597,12 @@ export async function getAllBlocksByPageId(pageId) {
                Url: item.video.external.url 
             }
           }
-          //block.Video = video
-          block = {
+          block.Video = video
+          /* block = {
             Id: item.id,
             Type: item.type,
             Video: video,
-          }
+          } */
           break
 
         default:
