@@ -20,7 +20,7 @@ import {
   getAllBlocksByPageId,
 } from '../../lib/notion/client'
 
-import { LinkPreview } from '@dhaiwat10/react-link-preview'
+//import { LinkPreview } from '@dhaiwat10/react-link-preview'
 
 
 // Get the data for each blog post
@@ -269,38 +269,38 @@ const RenderPost = ({
                 toRender.push(<components.TweetEmbed url={block.Embed.Url} />)
               } else if (/^https:\/\/gist\.github\.com/.test(block.Embed.Url)) {
                 toRender.push(
-                  <LinkPreview
-                    url={block.Embed.Url}
-                    className={blogStyles.linkPreview}
+                  <components.Bookmark block={block}
+                    //className={blogStyles.bookmark}
                   />
                 )
               }
               break
-/*             case 'video':
+            case 'video':
               //if (/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/){
                 toRender.push(
                   //<components.Video/>
                   //React.createElement(
-                    components.Video 
+                    <components.Video block={block}
                   //  url={block.Video.External.Url}
-                  ///>
+                  />
                   //)
                 )
               
-              break */
+              break
             case 'bookmark':
               toRender.push(
-                <LinkPreview
-                  url={block.Bookmark.Url}
-                  className={blogStyles.linkPreview}
+                <components.Bookmark
+                  block={block}
+                  //className={blogStyles.bookmark}
                 />
               )
               break
             case 'link_preview':
               toRender.push(
-                <LinkPreview
-                  url={block.LinkPreview.Url}
-                  className={blogStyles.linkPreview}
+                <components.Bookmark
+                  block={block}
+                  //url={block.Bookmark.Url}
+                  //className={blogStyles.bookmark}
                 />
               )
               break

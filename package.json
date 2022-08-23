@@ -13,9 +13,9 @@
     }
   },
   "dependencies": {
-    "@dhaiwat10/react-link-preview": "^1.12.2",
     "@notionhq/client": "^0.3.0",
     "async-sema": "^3.1.0",
+    "axios": "^0.27.2",
     "eslint": "^8.10.0",
     "eslint-config-next": "^12.1.0",
     "github-slugger": "^1.2.1",
@@ -27,6 +27,7 @@
     "react-twitter-embed": "^4.0.4",
     "react-youtube": "^9.0.3",
     "shell-quote": "^1.7.3",
+    "url-metadata": "^2.5.0",
     "uuid": "^8.1.0"
   },
   "devDependencies": {

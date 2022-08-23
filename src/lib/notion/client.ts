@@ -58,9 +58,9 @@ interface BookmarkBlock extends Block {
   Bookmark: Bookmark
 }
 
-interface LinkPreviewBlock extends Block {
+/* interface LinkPreviewBlock extends Block {
   LinkPreview: LinkPreview
-}
+} */
 
 interface VideoBlock extends Block{
   Video: Video
@@ -103,9 +103,9 @@ interface Video{
   External?: External
 }
 
-interface LinkPreview {
+/* interface LinkPreview {
   Url: string
-}
+} */
 
 interface RichText {
   Text: Text
@@ -575,7 +575,7 @@ export async function getAllBlocksByPageId(pageId) {
             Bookmark: bookmark,
           }
           break
-        case 'link_preview':
+        /* case 'link_preview':
           const linkPreview: LinkPreview = {
             Url: item.link_preview.url,
           }
@@ -586,7 +586,7 @@ export async function getAllBlocksByPageId(pageId) {
             HasChildren: item.has_children,
             LinkPreview: linkPreview,
           }
-          break
+          break */
         case 'video':
           const video: Video = {
             Type: item.video.type,
@@ -597,12 +597,12 @@ export async function getAllBlocksByPageId(pageId) {
                Url: item.video.external.url 
             }
           }
-          block.Video = video
-          /* block = {
-            Id: item.id,
-            Type: item.type,
+          //block.Video = video
+          block = {
+            //Id: item.id,
+            //Type: item.type,
             Video: video,
-          } */
+          }
           break
 
         default:
