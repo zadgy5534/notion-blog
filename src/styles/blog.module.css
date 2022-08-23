@@ -142,13 +142,13 @@
   margin: 0 auto;
 }
 
-.linkPreview {
+/* .linkPreview {
   font-size: 0.7em;
 }
 
 .linkPreview :global(h3) {
   margin: 0;
-}
+} */
 
 .bookmark {
   width: 100%;
