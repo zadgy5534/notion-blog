@@ -25,8 +25,9 @@ const Footer = () => (
       </ExtLink>
       <span>
         <p>
-          姉妹サイト："Silva Speculationis"
+          姉妹サイト："Silva Speculationis"（2020年まで）
           <ExtLink href="https://www.medieviste.org">(medieviste.org)</ExtLink>
+          もどうぞ。
         </p>
       </span>
     </footer>
