@@ -15,6 +15,13 @@ const Footer = () => (
         </ExtLink>
         にまとめています。
       </span>
+      <span>
+        generative art codingの
+        <ExtLink href="https://deltographos.notion.site/956aa8e7eb7a46ffbeafa5d375bc3a1c?v=0e54551eeadf4fdcbc556795ba7c31fa">
+          "まとめページ（2023年から）"
+        </ExtLink>
+        もご覧ください。
+      </span>
       <ExtLink href="https://www.medieviste.org">
         <img
           src="https://www.medieviste.org/wp/wp-content/uploads/leaf1.gif"
