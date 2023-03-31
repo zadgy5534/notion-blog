@@ -15,7 +15,7 @@ const Footer = () => (
         </ExtLink>
         にまとめています。
       </span>
-      <p>
+      <p></p>
       <span>
         generative art codingの
         <ExtLink href="https://deltographos.notion.site/956aa8e7eb7a46ffbeafa5d375bc3a1c?v=0e54551eeadf4fdcbc556795ba7c31fa">
