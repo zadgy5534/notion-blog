@@ -5,21 +5,28 @@ const Footer = () => (
   <>
     <footer>
       <span>
-        <ExtLink href="https://deltographos.com/atom">RSS/Atom Feed</ExtLink>
+        Home: このページです。 （ブログのRSS / Feedの
+        <ExtLink href="https://bib.deltographos.com/feed">登録はこちら</ExtLink>
       </span>
       <p></p>
       <span>
-        過去記事は定期的に
+        New Blog: ブログです。 
+        <ExtLink href="https://bib.deltographos.com/">
+          "bib.deltographos.com"
+        </ExtLink>
+      </span>
+      <p></p>
+      <span>
+        Archive: Notionでのアーカイブ: 
         <ExtLink href="https://deltographos.notion.site/">
           "deltographos.notion.site"
         </ExtLink>
-        にまとめています。
       </span>
       <p></p>
       <span>
-        generative art codingの
+        Gallery: アートコーディングの
         <ExtLink href="https://deltographos.notion.site/956aa8e7eb7a46ffbeafa5d375bc3a1c?v=0e54551eeadf4fdcbc556795ba7c31fa">
-          "まとめページ（2023年から）"
+          まとめページ（2023年から）
         </ExtLink>
         もご覧ください。
       </span>
