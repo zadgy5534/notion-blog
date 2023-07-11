@@ -5,7 +5,7 @@ const Footer = () => (
   <>
     <footer>
       <span>
-        Home: このページです。 （ブログのRSS / Feedの
+        Home: このページです。 ブログのRSS / Feedの
         <ExtLink href="https://bib.deltographos.com/feed">登録はこちら</ExtLink>
       </span>
       <p></p>
