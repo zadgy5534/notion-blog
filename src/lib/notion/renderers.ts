@@ -33,7 +33,7 @@ export function textBlock(block, noPTag, mainKey) {
   }
 
   for (const richText of block.RichTexts) {
-    let tags = []
+    const tags = []
     key++
     if (richText.Annotation.Bold) {
       tags.push(['b'])
@@ -50,7 +50,7 @@ export function textBlock(block, noPTag, mainKey) {
     if (richText.Annotation.Code) {
       tags.push(['code'])
     }
-    if (!!richText.Href) {
+    if (richText.Href) {
       tags.push(['a', richText.Href])
     }
 

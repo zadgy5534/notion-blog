@@ -133,7 +133,7 @@ interface Link {
 }
 
 export async function getPosts(pageSize: number = 10, cursor?: string) {
-  let params = {
+  const params = {
     database_id: DATABASE_ID,
     filter: {
       and: [
@@ -188,7 +188,7 @@ export async function getPosts(pageSize: number = 10, cursor?: string) {
 export async function getAllPosts() {
   let allPosts: Post[] = []
 
-  let params = {
+  const params = {
     database_id: DATABASE_ID,
     filter: {
       and: [
@@ -333,7 +333,7 @@ export async function getPostBySlug(slug: string) {
 }
 
 export async function getPostsByTag(tag: string, cursor?: string) {
-  let params = {
+  const params = {
     database_id: DATABASE_ID,
     filter: {
       and: [
@@ -393,7 +393,7 @@ export async function getPostsByTag(tag: string, cursor?: string) {
 export async function getAllBlocksByPageId(pageId) {
   let allBlocks: Block[] = []
 
-  let params = {
+  const params = {
     block_id: pageId,
   }
 

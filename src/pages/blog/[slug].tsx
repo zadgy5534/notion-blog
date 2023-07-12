@@ -1,5 +1,3 @@
-const path = require('path')
-
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Header from '../../components/header'
@@ -22,6 +20,7 @@ import {
 
 //import { LinkPreview } from '@dhaiwat10/react-link-preview'
 
+const path = require('path')
 
 // Get the data for each blog post
 export async function getStaticProps({ params: { slug } }) {
@@ -118,7 +117,6 @@ const RenderPost = ({
     <Header
       path={`/blog/${post.Slug}`}
       titlePre={post.Title}
-      description={post.Excerpt}
       ogImageUrl={
         !post.OGImage
           ? ''
@@ -153,7 +151,7 @@ const RenderPost = ({
         const isList =
           block.Type === 'bulleted_list_item' ||
           block.Type === 'numbered_list_item'
-        let toRender = []
+        const toRender = []
         let richText
 
         if (!!block.RichTexts && block.RichTexts.length > 0) {
@@ -205,7 +203,7 @@ const RenderPost = ({
         }
 
         const renderHeading = (Type: string | React.ComponentType) => {
-          if (!!richText) {
+          if (richText) {
             toRender.push(
               <Heading key={block.Id}>
                 <Type key={block.Id}>{textBlock(block, true, block.Id)}</Type>
