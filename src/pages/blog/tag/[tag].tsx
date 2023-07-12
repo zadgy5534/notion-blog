@@ -70,70 +70,68 @@ export default ({ tag, posts = [], tags = [], redirect }) => {
     )
   }
 
-  return (
-    <>
-      <Header titlePre={`${tag}を含む記事`} />
-      <div className={`${sharedStyles.layout} ${blogStyles.blogIndex}`}>
-        <h2>{tag}</h2>
-        {posts.length === 0 && (
-          <p className={blogStyles.noPosts}>There are no posts yet</p>
-        )}
-        {posts.map(post => {
-          return (
-            <div className={blogStyles.postPreview} key={post.Slug}>
-              {post.Date && (
-                <div className="posted">📅&nbsp;&nbsp;{post.Date}</div>
-              )}
+  return <>
+    <Header titlePre={`${tag}を含む記事`} />
+    <div className={`${sharedStyles.layout} ${blogStyles.blogIndex}`}>
+      <h2>{tag}</h2>
+      {posts.length === 0 && (
+        <p className={blogStyles.noPosts}>There are no posts yet</p>
+      )}
+      {posts.map(post => {
+        return (
+          <div className={blogStyles.postPreview} key={post.Slug}>
+            {post.Date && (
+              <div className="posted">📅&nbsp;&nbsp;{post.Date}</div>
+            )}
 
-              <h3>
-                <div className={blogStyles.titleContainer}>
-                  <Link
-                    href="/blog/[slug]"
-                    as={getBlogLink(post.Slug)}
-                    passHref
-                  >
-                    <a>{post.Title}</a>
-                  </Link>
-                </div>
-              </h3>
-              <div className={blogStyles.tagContainer}>
-                {post.Tags &&
-                  post.Tags.length > 0 &&
-                  post.Tags.map(tag => (
-                    <Link
-                      href="/blog/tag/[tag]"
-                      as={getTagLink(tag)}
-                      key={`${post.Slug}-${tag}`}
-                      passHref
-                    >
-                      <a className={blogStyles.tag}>🔖{tag}</a>
-                    </Link>
-                  ))}
+            <h3>
+              <div className={blogStyles.titleContainer}>
+                <Link
+                  href="/blog/[slug]"
+                  as={getBlogLink(post.Slug)}
+                  passHref
+                >
+                  {post.Title}
+                </Link>
               </div>
-              <p>{post.Excerpt}</p>
+            </h3>
+            <div className={blogStyles.tagContainer}>
+              {post.Tags &&
+                post.Tags.length > 0 &&
+                post.Tags.map(tag => (
+                  (<Link
+                    href="/blog/tag/[tag]"
+                    as={getTagLink(tag)}
+                    key={`${post.Slug}-${tag}`}
+                    passHref
+                    className={blogStyles.tag}>
+                    🔖{tag}
+                  </Link>)
+                ))}
             </div>
-          )
-        })}
-      </div>
-      <div className={blogStyles.tagIndex}>
-        <h3>タグ</h3>
-        {tags.length === 0 && (
-          <div className={blogStyles.noTags}>There are no tags yet</div>
-        )}
-        {tags.length > 0 && (
-          <ul>
-            {tags.map(tag => {
-              return (
-                <li key={tag}>
-                  <Link href="/blog/tag/[tag]" as={getTagLink(tag)} passHref>
-                    <a>{tag}</a>
-                  </Link>
-                </li>
-              )
-            })}
-          </ul>
-        )}
-      </div>
-    </>
-  )
+            <p>{post.Excerpt}</p>
+          </div>
+        );
+      })}
+    </div>
+    <div className={blogStyles.tagIndex}>
+      <h3>タグ</h3>
+      {tags.length === 0 && (
+        <div className={blogStyles.noTags}>There are no tags yet</div>
+      )}
+      {tags.length > 0 && (
+        <ul>
+          {tags.map(tag => {
+            return (
+              <li key={tag}>
+                <Link href="/blog/tag/[tag]" as={getTagLink(tag)} passHref>
+                  {tag}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </div>
+  </>;
 }
