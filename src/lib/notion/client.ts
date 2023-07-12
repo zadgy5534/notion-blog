@@ -162,7 +162,7 @@ export async function getPosts(pageSize: number = 10, cursor?: string) {
     page_size: pageSize,
   }
 
-  if (!!cursor) {
+  if (cursor) {
     params['start_cursor'] = cursor
   }
 
@@ -367,7 +367,7 @@ export async function getPostsByTag(tag: string, cursor?: string) {
     ],
   }
 
-  if (!!cursor) {
+  if (cursor) {
     params['start_cursor'] = cursor
   }
 
