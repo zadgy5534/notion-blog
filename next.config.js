@@ -62,7 +62,7 @@ if (!DATABASE_ID) {
 }
 
 module.exports = {
-  target: 'experimental-serverless-trace',
+  //target: 'experimental-serverless-trace',
 
   /* webpack(cfg, { dev, isServer }) {
     // only compile build-rss in production server build
