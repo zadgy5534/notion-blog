@@ -31,6 +31,7 @@ module.exports = {
         "no-case-declarations": "off",
         "no-undef": "off",
         "@typescript-eslint/no-var-requires": "off",
-        "no-extra-boolean-cast": "off"
+        "no-extra-boolean-cast": "off",
+        "no-constant-condition": "off"
     }
 }
