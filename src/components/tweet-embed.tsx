@@ -1,4 +1,5 @@
 import { TwitterTweetEmbed } from 'react-twitter-embed'
+import React from 'react'
 
 const TweetEmbed = ({ url }) => {
   let matched

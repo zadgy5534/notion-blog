@@ -1,5 +1,6 @@
 import Header from '../components/header'
 import ExtLink from '../components/ext-link'
+import React from 'react'
 
 import sharedStyles from '../styles/shared.module.css'
 import contactStyles from '../styles/contact.module.css'

@@ -1,3 +1,4 @@
+import React from 'react'
 import ExtLink from './ext-link'
 //import Link from 'next/link'
 
