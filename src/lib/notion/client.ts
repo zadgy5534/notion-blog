@@ -1,4 +1,5 @@
 import { NOTION_API_SECRET, DATABASE_ID } from './server-constants'
+
 const { Client } = require('@notionhq/client')
 
 const client = new Client({
