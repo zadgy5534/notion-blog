@@ -21,7 +21,7 @@ const Code = ({ children, language = 'javascript' }) => {
         />
       </pre>
 
-      <style jsx>{`
+      {/* <style jsx>{`
         pre {
           tab-size: 2;
         }
@@ -35,7 +35,7 @@ const Code = ({ children, language = 'javascript' }) => {
           font-size: 0.75rem;
           border-radius: var(--radius);
         }
-      `}</style>
+      `}</style> */}
     </>
   )
 }

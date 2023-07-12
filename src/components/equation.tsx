@@ -1,4 +1,5 @@
 import { renderToString, ParseError } from 'katex'
+import React from 'react'
 
 function render(expression: string, displayMode: boolean): string {
   let result: string

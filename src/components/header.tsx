@@ -21,7 +21,6 @@ const defaultTitle = 'Deltographos - Blog'
 const Header = ({
   path = '',
   titlePre = '',
-  description = '',
   ogImageUrl = '',
 }) => {
   const { pathname } = useRouter()
