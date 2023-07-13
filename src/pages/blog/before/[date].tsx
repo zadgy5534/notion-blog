@@ -85,7 +85,7 @@ const RenderPostsBeforeDate = ({
     <Header
       path={getBeforeLink(date)}
       titlePre={`${date}より前の記事`}
-      description={`${date}より前の記事`}
+      //description={`${date}より前の記事`}
     />
     <div className={`${blogStyles.flexContainer}`}>
       <div className={`${sharedStyles.layout} ${blogStyles.blogIndex}`}>
