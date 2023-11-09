@@ -18,18 +18,17 @@ const Footer = () => (
       </span>
       <p></p>
       <span>
-        Archive: Notionでのアーカイブ: 
-        <ExtLink href="https://deltographos.notion.site/">
-          "deltographos.notion.site"
+        Archive:  過去記事のセレクションを掲載しています。
+        <ExtLink href="https://www.medieviste.org/">
+          "www.medieviste.org"
         </ExtLink>
       </span>
       <p></p>
       <span>
-        Gallery: アートコーディングの
-        <ExtLink href="https://deltographos.notion.site/956aa8e7eb7a46ffbeafa5d375bc3a1c?v=0e54551eeadf4fdcbc556795ba7c31fa">
-          まとめページ（2023年から）
+        Gallery: アートコーディング作品集です。
+        <ExtLink href="https://deltographos.notion.site/">
+          "deltographos.notion.site" 
         </ExtLink>
-        もご覧ください。
       </span>
       <ExtLink href="https://www.medieviste.org">
         <img
