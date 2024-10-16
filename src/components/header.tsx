@@ -9,7 +9,7 @@ const navItems: { label: string; page?: string; link?: string }[] = [
   { label: 'Home', page: '/' },
   { label: 'New Blog', link: 'https://bib.deltographos.com' },
   { label: 'Archive', link: 'https://www.medieviste.org' },
-  { label: 'Gallery', link: 'https://deltographos.notion.site' }
+  { label: 'Gallery', link: 'https://deltographos.notion.site/Ameba-form-120fb40006fa80e78cb5eb8ac886da0c?pvs=4' }
   // { label: 'Contact', page: '/contact' },
   // { label: 'Source Code', link: 'https://github.com/ijjk/notion-blog' },
 ]

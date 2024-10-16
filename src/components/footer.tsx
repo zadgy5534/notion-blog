@@ -18,7 +18,7 @@ const Footer = () => (
       </span>
       <p></p>
       <span>
-        Archive:  過去記事のセレクションを掲載しています。
+        Archive:  過去記事のセレクションを含む、旧来からのブログです。
         <ExtLink href="https://www.medieviste.org/">
           "www.medieviste.org"
         </ExtLink>
@@ -26,7 +26,7 @@ const Footer = () => (
       <p></p>
       <span>
         Gallery: アートコーディング作品集です。
-        <ExtLink href="https://deltographos.notion.site/">
+        <ExtLink href="https://deltographos.notion.site/Ameba-form-120fb40006fa80e78cb5eb8ac886da0c?pvs=4">
           "deltographos.notion.site" 
         </ExtLink>
       </span>
