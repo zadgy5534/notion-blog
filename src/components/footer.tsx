@@ -11,7 +11,7 @@ const Footer = () => (
       </span>
       <p></p>
       <span>
-        New Blog: ブログです。 
+        New Blog: 2023年からの新規ブログです。 
         <ExtLink href="https://bib.deltographos.com/">
           "bib.deltographos.com"
         </ExtLink>
@@ -26,7 +26,7 @@ const Footer = () => (
       <p></p>
       <span>
         Gallery: アートコーディング作品集です。
-        <ExtLink href="https://deltographos.notion.site/Ameba-form-120fb40006fa80e78cb5eb8ac886da0c?pvs=4">
+        <ExtLink href="https://deltographos.notion.site/956aa8e7eb7a46ffbeafa5d375bc3a1c?v=0e54551eeadf4fdcbc556795ba7c31fa&pvs=4">
           "deltographos.notion.site" 
         </ExtLink>
       </span>

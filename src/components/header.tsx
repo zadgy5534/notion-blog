@@ -9,7 +9,7 @@ const navItems: { label: string; page?: string; link?: string }[] = [
   { label: 'Home', page: '/' },
   { label: 'New Blog', link: 'https://bib.deltographos.com' },
   { label: 'Archive', link: 'https://www.medieviste.org' },
-  { label: 'Gallery', link: 'https://deltographos.notion.site/Ameba-form-120fb40006fa80e78cb5eb8ac886da0c?pvs=4' }
+  { label: 'Gallery', link: 'https://deltographos.notion.site/956aa8e7eb7a46ffbeafa5d375bc3a1c?v=0e54551eeadf4fdcbc556795ba7c31fa&pvs=4' }
   // { label: 'Contact', page: '/contact' },
   // { label: 'Source Code', link: 'https://github.com/ijjk/notion-blog' },
 ]
