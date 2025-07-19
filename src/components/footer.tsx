@@ -11,7 +11,7 @@ const Footer = () => (
       </span>
       <p></p>
       <span>
-        New Blog: 2023年からの新規ブログです。 
+        New Blog: 2023年からの新規ブログです。一時休止中 
         <ExtLink href="https://bib.deltographos.com/">
           "bib.deltographos.com"
         </ExtLink>
