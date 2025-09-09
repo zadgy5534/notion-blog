@@ -6,22 +6,23 @@ const Footer = () => (
   <>
     <footer>
       <span>
-        Home: このページです。 ブログのRSS / Feedの
-        <ExtLink href="https://bib.deltographos.com/feed">登録はこちら</ExtLink>
+        Home: このページです。 
       </span>
       <p></p>
       <span>
-        New Blog: 2023年からの新規ブログです。一時休止中 
+        Deltographos::Blog: 2023年からの新規ブログです―テックポエム系
         <ExtLink href="https://bib.deltographos.com/">
           "bib.deltographos.com"
-        </ExtLink>
+        </ExtLink><br></br>
+        <ExtLink href="https://bib.deltographos.com/feed">Feed登録はこちら</ExtLink>
       </span>
       <p></p>
       <span>
-        Archive:  過去記事のセレクションを含む、旧来からのブログです。
+        Medieviste.org:  過去記事のセレクションを含む旧来からのブログです―書評系
         <ExtLink href="https://www.medieviste.org/">
           "www.medieviste.org"
-        </ExtLink>
+        </ExtLink><br></br>
+        <ExtLink href="https://www.medieviste.org/?feed=rss2">RSS登録はこちら</ExtLink>
       </span>
       <p></p>
       <span>
