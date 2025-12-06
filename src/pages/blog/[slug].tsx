@@ -85,7 +85,7 @@ const RenderPost = ({
       key: string
       isNested?: boolean
       nested: string[]
-      children: React.ReactFragment
+      children: React.ReactNode
     }
   } = {}
 
@@ -206,7 +206,7 @@ const RenderPost = ({
           if (richText) {
             toRender.push(
               <Heading key={block.Id}>
-                <Type key={block.Id}>{textBlock(block, true, block.Id)}</Type>
+                {React.createElement(Type, { key: block.Id }, textBlock(block, true, block.Id))}
               </Heading>
             )
           }
